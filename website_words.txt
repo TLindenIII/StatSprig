@@ -1,0 +1,1057 @@
+([]);
+  const [currentAltIndex, setCurrentAltIndex] = useState(0);
+  const [selectedTest, setSelectedTest] = useState
+([]);
+  const [showCompare, setShowCompare] = useState(false);
+  const [currentBaseTest, setCurrentBaseTest] = useState
+(null);
+  
+  const [selectedTest, setSelectedTest] = useState
+(null);
+  const [alternativesList, setAlternativesList] = useState
+(null);
+  const [compareTests, setCompareTests] = useState
+(null);
+  const [selectedDesign, setSelectedDesign] = useState
+(null);
+  const [selectedLevel, setSelectedLevel] = useState
+(null);
+  const [selectedMethodFamily, setSelectedMethodFamily] = useState
+(null);
+  const [selectedOutcomeScale, setSelectedOutcomeScale] = useState
+) : (
+0 && (
+0 ? (
+1 (vs a reference value)
+2x2 table
+2x2 tables
+2×2
+2×2 independent table
+3+
+;
+  /** Soft scoring boosts */
+  boosts?: Partial
+A general statement or default position that there is no relationship between two measured phenomena, or no association among groups.
+A probability distribution that is symmetric about the mean, showing that data near the mean are more frequent in occurrence than data far from the mean.
+A range of values so defined that there is a specified probability that the value of a parameter lies within it.
+Accelerated Failure Time Model
+accelerated-failure-time
+Accounts for grouping structure in data
+Additive/multiplicative seasonality
+adf-test
+Adjust Selections
+Adjusting for confounders
+After Kruskal-Wallis
+After Welch
+Agreement between raters
+All Categories
+All Designs
+All Levels
+All Methods
+All Outcomes
+All pairwise comparisons
+All pairwise comparisons after ANOVA
+All Statistical Tests
+Alternative Hypothesis
+An interactive guide to help researchers select the appropriate statistical test based on their research goals, data structure, and study design.
+Analysis of covariance combining ANOVA with regression to control for covariates.
+Analyze the mean of within-pair differences
+Analyzes time-to-event when multiple event types can occur, only one observed.
+ANCOVA
+ancova
+anderson-darling
+Anderson-Darling Test
+ANOVA context
+ANOVA effect size
+Any preference for method style?
+Any test statistic
+Appropriate link function
+Appropriate linkage method
+Appropriate test selection
+AR process
+Are the measurements independent or paired/repeated?
+Are you comfortable assuming approximate normality (or large n)?
+arima
+ARIMA Model
+ARIMA residual check
+Association / correlation
+Assumes distributions, often more powerful
+Assumption Checking
+Assumption Testing
+Assumptions / diagnostics / post-hoc / effect size
+Augmented Dickey-Fuller Test
+Autocorrelated data
+Automated forecasting procedure by Facebook for time series with seasonality and holidays.
+Autoregressive integrated moving average model for time series forecasting.
+Balanced designs
+Bartlett's Test
+bartlett-test
+Based on your selections, here are the statistical tests that best
+              fit your analysis needs.
+Baseline model
+Bayesian
+Bayesian alternative to t-test providing posterior probability of hypotheses.
+Bayesian ANOVA
+Bayesian approach to comparing group means with Bayes factors.
+Bayesian Methods
+Bayesian Regression
+Bayesian t-Test
+bayesian-anova
+bayesian-regression
+bayesian-t-test
+Before ANOVA
+Before ARIMA modeling
+Before inference
+Before parametric tests
+Before-after / within-subject comparisons
+Before-after binary outcomes
+Before-after comparisons
+Before-during-after binary
+Before-during-after comparisons
+benjamini-hochberg
+Benjamini-Hochberg (FDR)
+Best Matches
+Bias-corrected version of Cohen's d for small sample sizes.
+Binary
+Binary classification
+Binary outcome
+Binary-continuous relationships
+Binary/count data in hierarchical structures
+Binary–continuous
+Bivariate normality
+Blocked designs
+bonferroni
+Bonferroni Correction
+bootstrap
+Bootstrap
+Both variables continuous
+breusch-pagan
+Breusch-Pagan Test
+brown-forsythe
+Brown-Forsythe Test
+Browse All Tests
+Builds a tree of clusters using agglomerative or divisive approaches.
+Business forecasting
+Calculates required sample size or statistical power for detecting an effect.
+Case-control studies
+catboost
+CatBoost
+Categorical
+Categorical (counts/proportions)
+Categorical (nominal)
+Categorical association (tables)
+Categorical association / agreement
+Categorical data
+Categorical features present
+Categorical features supported
+Categorical Focus
+Categorical variables
+Categories
+Causality between series
+Cause-specific analysis
+Checking constant variance
+Checking homogeneity of variance before ANOVA
+Checking normality assumption
+chi-square
+Chi-Square Test (2x2)
+Chi-Square Test of Independence
+Chi-square, Fisher's exact, contingency tables
+Classifies or predicts based on the k closest training examples in feature space.
+Clear All
+Clear all filters
+Clear filters
+Clear margin of separation
+Clinical trial endpoints
+Cluster analysis
+Cluster exploration
+Clustered / hierarchical
+Clustered/nested data
+Clustering
+Clustering, dimension reduction, embeddings
+cmp_cont_ind_2g_default
+Cochran's Q Test
+cochran-q
+Coding reliability
+Cohen's d
+Cohen's Kappa
+cohens-d
+cohens-kappa
+Cointegration analysis
+Combining Lasso and Ridge
+Compare groups (differences)
+Compare means of two independent groups
+Compare survival curves
+Compare to a control group
+compare_groups
+Compares means from the same group at two different times or under two different conditions.
+Compares means of two independent groups to determine if they are statistically different.
+Compares multiple treatment groups to a single control group.
+Compares sample distribution to a reference distribution (often normal) or compares two samples.
+Compares survival distributions between two or more groups.
+Comparing 3+ group means
+Comparing 3+ groups with non-normal data
+Comparing association strength
+Comparing survival curves
+Comparing to a known or hypothesized value
+Comparing two distributions
+Comparing:
+Competing risks
+Competing Risks Analysis
+competing-risks
+Competitions
+Complex contrasts
+Complex non-linear patterns
+Complex non-linear relationships
+Complex statistics
+Complex test statistics
+Conditional independence
+Conditions
+Confidence Interval
+Confidence intervals, effect sizes, resampling
+Conservative control
+Conservative correction
+Constant variance
+Content analysis
+Contingency table
+Contingency Table
+Contingency tables
+Continuous
+continuous
+Continuous (numeric)
+Continuous / numeric
+Continuous data
+Continuous distribution
+Continuous or ordinal data
+Continuous outcome
+Continuous variables
+Continuous–continuous
+Control Variables
+Controlling for confounders
+Controls false discovery rate rather than family-wise error rate, more powerful for many tests.
+Correlation
+Count
+Count data like number of events
+Count outcome
+Count outcomes
+Covers Common Research Scenarios
+Cox Proportional Hazards
+Cox proportional hazards
+cox-regression
+cramers-v
+Cramér's V
+Customer segmentation
+D'Agostino-Pearson Test
+dagostino-pearson
+Data is roughly bell-shaped or sample is large
+Data is skewed, has outliers, or sample is small
+Data reduction with theory
+Data roughly symmetric or n moderately large
+DBSCAN
+dbscan
+Decision Tree
+decision-tree
+Deep learning baseline
+Dendrogram visualization
+Density-based clustering that finds arbitrarily shaped clusters and identifies outliers.
+Dependence Structure
+Describe survival curve
+Descriptive survival analysis
+Design
+Detecting multicollinearity
+Detecting non-normality from skewness/kurtosis
+Detecting serial correlation
+Diagnostic
+Diagnostic agreement
+Diagnostic test comparison
+Diagnostics & Add-ons
+Diagnostics / post-hoc / corrections / effect sizes
+Diagnostics / tests
+Difference in means ~ normal (or n large; no extreme outliers)
+Difference of means ~ normal (or n large; no extreme outliers)
+Differences $d_i = x_{1,i} - x_{2,i}$ ~ normal (or n large; no extreme outliers in $d_i$)
+Different subjects in each group
+Dimension reduction
+Dimension Reduction
+Dimension reduction / embedding
+Dimension reduction / latent structure
+Direct time interpretation
+discriminant-analysis
+Distribution
+Distribution fitting
+Distribution-free, fewer assumptions
+Do you expect equal variances across groups?
+Do you need power/sample size planning?
+Do you need random effects for clustered/repeated observations?
+Do you need the association controlling for other variables?
+Does not assume equal variances
+Dose-response
+Drug trials
+Dunn's Test
+dunn-test
+Dunnett's Test
+dunnett-test
+durbin-watson
+Durbin-Watson Test
+Effect size
+Effect Size
+Effect size for association
+Effect size for chi-square
+Effect size for t-test
+Elastic Net
+elastic-net
+Elliptical clusters
+Ensemble of decision trees for classification or regression with improved accuracy.
+Equal sample sizes
+Equal sample sizes (approximate)
+Equal variance check
+Equal variances
+Equal variances (homoscedasticity)
+Estimate a parameter
+Estimate a survival curve
+Estimating survival curves
+Estimation
+eta-squared
+Eta-squared / Partial Eta-squared
+Event count modeling
+Event frequencies
+Evidence for null hypothesis
+Exact test for association in 2x2 contingency tables, especially with small samples.
+Examining patterns
+Excess zeros
+Exchangeability under null
+Expected cell count >= 5
+Expected cell count >= 5 in 80% of cells
+Expected counts < 5
+Explain effects / inference
+Exploratory analysis
+Exploring cluster hierarchy
+Exponential Smoothing
+exponential-smoothing
+Extends Cohen's kappa to measure agreement among three or more raters.
+Extends GLM to include random effects for non-normal outcomes with clustering.
+Extension of McNemar test for comparing three or more matched proportions.
+Extension of random forest to survival data with censoring.
+Factor Analysis
+factor-analysis
+Factorial experimental design
+Fast training needed
+Fast visualization
+Feature extraction
+Feature importance
+Feature independence (often violated)
+Few comparisons
+Find the Right
+Finding natural groupings
+Finds optimal hyperplane to separate classes, can use kernels for non-linear boundaries.
+First-order autocorrelation
+Fisher's Exact Test
+fisher-exact
+Fixed categories
+Fixed marginals
+Fleiss' Kappa
+fleiss-kappa
+fligner-killeen
+Fligner-Killeen Test
+Forecasting
+Forecasting systems
+Forecasting, diagnostics, sequential data
+Free to Use
+Friedman Test
+friedman-test
+From comparing group means to assessing relationships, from parametric to non-parametric methods,
+              our decision tree covers the most common statistical analyses used in research.
+games-howell
+Games-Howell Test
+Gaussian clusters
+Gaussian Mixture Model
+gaussian-mixture
+gee
+General multiple testing
+Generalized Linear Mixed Model
+Genomics
+Get Started
+glmm
+Glossary
+Goal
+Goal-Oriented
+Good alternatives if assumptions aren't met
+Gradient Boosting
+Gradient boosting framework using leaf-wise tree growth for faster training.
+Gradient boosting with native categorical feature support and ordered boosting.
+gradient-boosting
+Granger Causality Test
+granger-causality
+Grant applications
+Group Comparison
+Group similar observations
+Group spreads are roughly similar
+Grouped/clustered data
+Groups
+Groups have noticeably different spreads
+Handling censored data
+Hartley's F-max Test
+hartley-fmax
+Hazard ratio estimation
+Heavy-tailed errors
+Hedges' g
+hedges-g
+Heterogeneous effects
+Heterogeneous variances
+Heteroskedasticity
+Hierarchical Clustering
+hierarchical-clustering
+High accuracy needed
+High prediction accuracy
+High-dimensional data
+High-dimensional data possible
+High-throughput testing
+holm-bonferroni
+Holm-Bonferroni Method
+Homogeneity of covariance matrices
+Homogeneity of regression slopes
+Homoscedasticity
+How It Works
+How many categorical factors define groups?
+How many conditions/timepoints per subject?
+How many groups / conditions are you comparing?
+How many groups are you comparing?
+How many raters?
+Hyperparameter tuning
+Hyperparameter tuning required
+Identifies latent factors underlying observed variables.
+If you find an overall difference, do you need post-hoc comparisons?
+Impulse response
+Incorporates prior information
+Increasing power
+Independence
+Independence of errors
+Independence of observations
+Independence testing
+independent
+Independent censoring
+Independent groups
+Independent obervations within and between groups
+Independent observations
+Independent observations within and between groups
+Independent or dependent tests
+Independent or positively dependent tests
+Independent samples
+Independent Samples (Pooled) t-Test
+Inference
+Instance-based learning
+Inter-rater reliability
+Interpretable inference
+Interpretable model needed
+Intraclass Correlation (ICC)
+intraclass-correlation
+Is the data clustered/repeated (subjects, sites, random effects)?
+Isolating relationships
+Item analysis
+K-Means Clustering
+k-Nearest Neighbors (k-NN)
+Kaggle competitions
+kaplan-meier
+Kaplan-Meier Estimator
+Kaplan-Meier estimator
+Kaplan-Meier, Cox regression, competing risks
+Kendall's Tau
+kendall-tau
+kmeans
+knn
+Known alpha level
+Known or estimated number of components
+Known reference distribution
+kolmogorov-smirnov
+Kolmogorov-Smirnov Test
+kruskal-wallis
+Kruskal-Wallis H Test
+Large datasets
+Large samples
+lasso-ridge
+Lasso/Ridge Regression
+Latent construct identification
+Latent variable interpretation
+Latent variable models
+Lead-lag relationships
+Level
+Levene's Test
+levene-test
+LightGBM
+lightgbm
+Likelihood model
+Linear covariate effects on log-hazard
+Linear Mixed Model
+Linear Regression
+Linear regression model
+Linear relationship
+Linear relationship with covariate
+Linear relationship with log-odds
+Linear relationships
+linear-mixed-model
+linear-regression
+ljung-box
+Ljung-Box Test
+Local structure preservation
+Log-linear relationship
+Log-Rank Test
+Log-rank test between groups
+log-rank-test
+Logistic Regression
+Logistic regression
+logistic-regression
+Longitudinal within-subject design
+Machine Learning
+Machine learning for survival
+Manifold assumption
+mann-whitney
+Mann-Whitney U Test
+manova
+MANOVA
+Many categorical features
+Many correlated predictors
+Many hypotheses
+Many tied ranks
+Many zeros in count data
+Matched pairs
+Matched pairs / crossover designs
+Matched samples
+Maximize model accuracy on new data
+Maximum protection
+McNemar's Test
+mcnemar-test
+Mean equals variance
+Meaningful distance metric
+Measure association (correlation/relationship)
+Measure of association between two categorical variables, normalized chi-square.
+Measure relationships between variables
+Measurements like height, weight, temperature
+Measures agreement between two raters for categorical items, adjusting for chance.
+Measures association between two variables while controlling for one or more other variables.
+Measures correlation between a continuous variable and a dichotomous variable.
+Measures reliability or agreement for observations that are organized into groups.
+Measures the linear relationship between two continuous variables.
+Measuring linear association
+Median modeling
+Medical diagnosis
+Medical outcomes
+Memory efficiency
+Meta-analysis
+Method
+Minimal preprocessing
+Missing data/outliers
+Mixed Models
+Model adequacy / autocorrelation
+Model an outcome with predictors
+Model comparison
+Model diagnostics
+Model Focus
+Model outcome with predictors
+Model relationships between multiple time series
+Model survival with covariates
+Modeling Preference
+Models binary outcomes using the cumulative normal distribution function.
+Models conditional quantiles (e.g., median) rather than the mean.
+Models continuous outcomes with both fixed and random effects for hierarchical/clustered data.
+Models count data as a function of predictors, assuming counts follow a Poisson distribution.
+Models count data with excess zeros using a two-part model.
+Models count data with overdispersion (variance greater than mean).
+Models multiple time series where each variable depends on its own and others' past values.
+Models ordinal outcomes with three or more ordered categories.
+Models relationship between continuous outcome and multiple predictors simultaneously.
+Models the probability of a binary outcome based on one or more predictors.
+Models the relationship between a continuous outcome and one or more predictors.
+Moderate to large samples
+Modification of t-test that does not assume equal variances between groups.
+Monotonic relationship
+More power than Bonferroni
+Most conservative post-hoc test, allows any linear contrast of means.
+Multi-layer perceptron with hidden layers for learning complex patterns.
+Multicollinearity
+multinomial-logistic
+Multiple Comparison
+Multiple comparisons
+Multiple continuous outcomes
+Multiple failure types
+Multiple groups with multiple categories
+Multiple Linear Regression
+Multiple measurements on same subjects
+Multiple measurements per subject
+Multiple outcome variables simultaneously
+Multiple outcomes
+Multiple possible event types
+Multiple predictors
+Multiple rater agreement
+Multiple raters
+Multiple regression context
+Multiple related outcomes
+Multiple related time series
+Multiple seasonality
+Multiple series modeling
+Multiple testing correction
+multiple-regression
+Multiplicative effect on survival time
+Multivariate
+Multivariate ANOVA testing group differences on multiple dependent variables simultaneously.
+Multivariate dynamics
+Multivariate normality
+Mutually exclusive events
+Naive Bayes
+naive-bayes
+Navigate through data types, sample structures, and assumptions step by step
+Negative Binomial Regression
+negative-binomial
+Nested data like students in schools
+Neural Network (MLP)
+neural-network-mlp
+No
+No / different variances
+No / not now
+No / standard model
+No competing risks (or adjust)
+No confounders
+No distributional assumptions
+No exact matches found
+No multicollinearity
+No noise dominance
+No outliers
+No preference
+No seasonality (or use SARIMA)
+No significant outliers
+No strict distributional assumptions
+No tests found matching your criteria.
+Nominal data
+Nominal variables
+Non-informative censoring
+Non-linear dimensionality reduction technique for visualization of high-dimensional data.
+Non-linear monotonic relationships
+Non-linear patterns
+Non-linear relationships
+Non-linear survival patterns
+Non-normal data
+Non-normal distributions
+Non-normal outcomes
+Non-normal outcomes with clustering
+Non-parametric alternative to one-way ANOVA for comparing three or more independent groups.
+Non-parametric alternative to repeated measures ANOVA for ordinal or non-normal data.
+Non-parametric estimator of survival function from time-to-event data.
+Non-parametric measure of monotonic relationship between two variables.
+Non-parametric measure of rank correlation, more robust than Spearman for small samples.
+Non-parametric multiple comparisons
+Non-parametric post-hoc test for pairwise comparisons after Kruskal-Wallis.
+Non-parametric test for comparing two related samples or repeated measurements.
+Non-parametric test for homogeneity of variances, highly robust to non-normality.
+Non-parametric test that compares distributions of two independent groups.
+Non-parametric test using random permutations to generate null distribution.
+Non-spherical clusters
+Nonparametric
+Nonparametric / rank-based
+Normal Distribution
+Normal distribution
+Normal distribution in each group
+Normal distribution in groups
+Normal residuals
+Normality
+Normality check
+Normality testing with tail sensitivity
+Normality tests, variance tests, pairwise comparisons
+Normally distributed data
+Not comparing treatments
+Not sure
+Null Hypothesis
+Number of Factors
+Number of Groups
+Numeric features
+Numeric outcome
+Odds Ratio
+Odds ratio estimation
+odds-ratio
+Omnibus test combining skewness and kurtosis to test for normality.
+One categorical predictor
+One continuous, one binary variable
+One control group
+One factor
+One-Way ANOVA
+one-way-anova
+Optimized gradient boosting library with regularization and parallel processing.
+Ordered p-values
+Ordinal
+Ordinal (rank / Likert)
+Ordinal data
+Ordinal Logistic Regression
+Ordinal or continuous data
+Ordinal or continuous outcome
+Ordinal outcome
+Ordinal outcomes
+Ordinal outcomes (Likert scales)
+ordinal-regression
+Outcome
+Outcome Type
+Outlier detection
+Outlier-resistant variance comparison
+Outliers present
+Overdispersed counts
+Overdispersion present
+P-value
+Paired (matched / pre-post)
+Paired / repeated measures
+Paired binary (2 conditions) — McNemar
+Paired binary (3+ conditions) — Cochran's Q
+Paired binary (pre/post on same units)
+Paired binary data
+Paired data with non-normal differences
+Paired observations
+Paired Samples t-Test
+paired-t-test
+Paired/matched observations
+Pairs independent of other pairs
+Parametric
+Parametric (if reasonable)
+Parametric survival
+Parametric survival model where covariates accelerate or decelerate time to event.
+Partial Correlation
+partial-correlation
+Partitions observations into k clusters by minimizing within-cluster variance.
+Pattern discovery
+pca
+PCA, factor analysis
+Pearson Correlation
+pearson-correlation
+Permutation Test
+Permutation-based
+permutation-test
+Perplexity parameter choice
+Planning
+point-biserial
+Point-Biserial Correlation
+Poisson Regression
+poisson-regression
+Post-hoc
+Post-hoc comparisons
+Post-hoc hypothesis generation
+Post-hoc test for pairwise comparisons after ANOVA, controlling family-wise error rate.
+Post-hoc test for unequal variances and/or unequal sample sizes.
+Post-hoc Tests
+Post-hoc tests, effect sizes, and diagnostics
+Potential outliers or leverage points
+Power
+Power / sample size planning
+Power analysis
+Power Analysis
+Power analysis, sample size calculation
+power-analysis
+Pre-test scores as covariate
+Predict future values
+Predicting continuous outcomes
+Prediction
+Prediction with covariates
+Prediction without proportional hazards
+Prediction-focused survival ML
+Predictive causality
+Predictive ML (nonlinear)
+Predictive performance
+Preference
+Preliminary analysis
+Preserving global structure
+Prevent overfitting
+Principal Component Analysis
+Prior information
+Prior information available
+Prior knowledge incorporation
+Prior specification
+Probabilistic assignment
+Probabilistic classifier based on Bayes' theorem with independence assumption.
+Probabilistic model assuming data comes from a mixture of Gaussian distributions.
+Probit Regression
+probit-regression
+Proper hyperparameter tuning
+Prophet
+prophet
+Proportion of variance explained by a factor in ANOVA designs.
+Proportional hazards
+Proportional odds
+Quality control
+Quantifies multicollinearity in regression by measuring how much variance is inflated.
+Quantifying evidence for null
+Quantifying relationships
+Quantile Regression
+quantile-regression
+Quick test for variance homogeneity using ratio of largest to smallest group variance.
+Quick variance ratio check
+Random Effects
+Random effects normally distributed
+Random effects specification
+Random Forest
+Random Survival Forest
+random-forest
+random-survival-forest
+Ranked categories
+Ranked categories with natural order
+Rate data
+Raters
+Ratio of odds of an event occurring in one group vs another.
+Ratio or interval scale
+Recommended based on your specific scenario
+Recommended Statistical Tests
+Reduces dimensionality by finding orthogonal directions of maximum variance.
+Reducing Type I error
+Regression
+Regression autocorrelation
+Regression diagnostics
+Regression methods resistant to outliers and violations of assumptions.
+Regression with covariates
+Regression with prior distributions on parameters, yielding posterior distributions.
+Regression, classification models
+Regression-based
+Regular time intervals
+Regularized (many predictors)
+Regularized regression combining L1 (Lasso) and L2 (Ridge) penalties.
+Regularized regression methods that shrink coefficients to prevent overfitting.
+Related samples
+Reliability
+Repeated measures
+Repeated measures (3+ within-subject)
+Repeated Measures ANOVA
+Repeated measures binary data
+Repeated measures with non-normal data
+repeated-measures-anova
+Reporting effect size
+Reporting results
+Representative sample
+Resampling
+Resampling method to estimate sampling distributions and confidence intervals.
+Research Goal
+Residuals tested against predictors
+Resistant to extreme values
+Restart Analysis
+Right-censored data
+Risk communication
+Robust / outlier-resistant
+Robust alternative to one-way ANOVA when variances are unequal across groups.
+Robust correlation estimate
+Robust inference
+Robust predictions
+Robust Regression
+Robust test for equality of variances using deviations from group medians.
+Robust variance testing
+robust-regression
+r×c (larger than 2×2)
+r×c independent table
+Same categories
+Same subjects across conditions
+Same subjects measured twice or matched pairs
+Same subjects, binary outcome, 3+ conditions
+Same subjects, binary outcome, before/after
+Sample size > 20
+Sample size justification
+Sample size sufficient
+Sample size typically between 3-5000
+Scale development
+Scaled features
+Scaled features recommended
+scheffe-test
+Scheffé's Test
+Search tests...
+Semi-parametric regression model for time-to-event data with covariates.
+Sequential observations over time
+Sequential testing
+Sequentially builds weak learners to minimize prediction errors.
+Severe non-normality
+shapiro-wilk
+Shapiro-Wilk Test
+Short-term forecasting
+Similar cluster sizes
+Similar density clusters
+Similar distribution shapes
+Simple adjustment for multiple comparisons by dividing alpha by number of tests.
+Simple baseline
+Simple fixed-effects model
+Simpler interpretation
+Small sample effect size
+Small sample sizes
+Small samples
+Small to moderate samples
+Soft clustering
+Spearman Rank Correlation
+spearman-correlation
+Specified distribution (Weibull, log-normal)
+Specified effect size
+Specified lag order
+Spherical clusters
+Sphericity
+Standardized features
+Standardized measure of effect size for difference between two means.
+Standardized predictors recommended
+Start Selection Wizard
+Start with your research question and let us guide you to the right test
+Stationarity (after differencing)
+Stationarity check
+Stationarity testing
+Stationarity, autocorrelation, white noise
+Stationary error variance
+Stationary series
+Statistical Test
+Statistical Tests
+StatsTree
+StatsTree - Statistical Selection Tool
+Step-down procedure that is uniformly more powerful than Bonferroni while controlling FWER.
+Structural and sampling zeros
+Structured/tabular data
+Study Design
+Study Planning
+Study planning
+Sufficient class representation
+Sufficient discordant pairs
+Sufficient neighbors
+Sufficient observations
+Sufficient sample size
+Sufficient training data
+Support Vector Machine (SVM)
+Survival
+Survival / time-to-event
+Survival Analysis
+Survival data with censoring
+Survival Task
+Survival with covariates
+svm
+Symmetric distribution of differences
+t-SNE
+t-SNE, UMAP
+t-test-independent
+Table Design
+Test differences between two or more groups
+Test independence (contingency table)
+Test-retest reliability
+Testing any distributional assumption
+Testing association between categorical variables
+Testing association in 2x2 tables
+Testing interaction effects
+Tests association between two binary variables (large sample).
+Tests differences across multiple time points or conditions for the same subjects.
+Tests equality of variances across groups, sensitive to departures from normality.
+Tests for autocorrelation in residuals from regression analysis.
+Tests for differences in paired proportions or matched case-control studies.
+Tests for heteroscedasticity in regression residuals.
+Tests for unit root to determine if a time series is stationary.
+Tests the effect of two independent categorical variables on a continuous outcome, including their interaction.
+Tests the null hypothesis that all groups have equal variances. More robust to non-normality than Bartlett's test.
+Tests whether a sample comes from a normally distributed population. Considered one of the most powerful normality tests.
+Tests whether a sample comes from a specified distribution, with more weight on tails than KS test.
+Tests whether any autocorrelations in a series are non-zero.
+Tests whether one time series helps predict another (temporal precedence).
+Tests whether there are statistically significant differences between the means of three or more independent groups.
+Tests whether there is a significant association between two categorical variables.
+Text classification
+The failure to reject a false null hypothesis (false negative).
+The hypothesis that sample observations are influenced by some non-random cause.
+The probability of obtaining test results at least as extreme as the results actually observed, under the assumption that the null hypothesis is correct.
+The rejection of a true null hypothesis (false positive).
+Three or more
+Three or more conditions
+Three or more groups
+Time Series
+Time series
+Time series data
+Time series forecasting
+Time series regression
+Time series residuals
+Time Series Task
+Time-series
+Time-to-event
+Time-to-event comparisons
+Treatment vs control comparisons
+Tree-structured model making sequential splits based on feature values.
+Trend and seasonality
+Trend modeling
+tsne
+Tukey's HSD
+tukey-hsd
+Two
+two
+Two categorical predictors
+Two groups
+Two groups or conditions
+Two groups with a binary outcome
+Two or more factors
+Two outcomes like yes/no, success/failure
+Two processes generating data
+Two raters
+Two-stage process
+Two-Way ANOVA
+two-way-anova
+Type I Error
+Type II Error
+umap
+UMAP
+Unbalanced designs
+Unbiased estimate
+Uncertainty quantification
+Understand what conditions your data needs to meet for each test
+Understand which predictors matter and how
+Unequal group sizes
+Unequal sample sizes
+Unequal variances allowed
+Uniform Manifold Approximation for fast non-linear dimension reduction preserving global structure.
+Unknown number of clusters
+Unknown sampling distribution
+Unordered categories like colors, types
+Unsupervised learning
+Unsupervised Task
+Useful Companions
+var
+VAR models
+Variable importance
+Variable selection
+Variable selection (Lasso)
+Variable selection + shrinkage
+Variable Types
+Variance explained
+Variance homogeneity testing
+Variance Inflation Factor (VIF)
+Variance testing with skewed data
+Variances
+Variances and/or sample sizes differ
+Variances similar
+Vector Autoregression (VAR)
+View All Tests →
+View Flowchart
+vif
+Visualization
+Visualization embedding
+Visualization of high-dimensional data
+We couldn't find a test that perfectly matches all your criteria. 
+                    Try adjusting your last few selections or browse the full library.
+Weighted moving average methods for time series forecasting with trend and seasonality.
+Welch's ANOVA
+Welch's t-Test
+welch-anova
+welch-t-test
+Well-defined time origin
+What are you doing with the time series?
+What are you trying to do?
+What best describes the table?
+What best describes your categorical setup?
+What do you care about most?
+What do you need for time-to-event data?
+What do you need?
+What do you want to do?
+What is the design?
+What is the outcome type?
+What is your primary goal?
+What is your primary time-series task?
+What is your priority?
+What type of outcome do you have?
+What variables are you associating?
+When proportional hazards fails
+White noise testing
+Wilcoxon Signed-Rank Test
+wilcoxon-signed-rank
+Will recommend best default
+Will suggest methods for both scenarios
+Will suggest robust alternatives
+Worth Considering
+XGBoost
+xgboost
+Yes
+Zero-inflated alternatives
+Zero-Inflated Poisson
+zero-inflated-poisson

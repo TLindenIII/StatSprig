@@ -1,0 +1,121 @@
+2026-02-10 | 446b377 | Thomas Linden | feat: Refactor wizard logic, introduce a new TestTile component, and update statistical test rules.
+2026-02-10 | 2644cee | Thomas Linden | feat: Introduce a rule-based system for statistical test recommendations and a dynamic, conditional wizard flow.
+2026-02-10 | 508a0eb | Thomas Linden | feat: Add Python and R code examples for Welch's t-test and refine existing t-test code examples by standardizing variables and removing print statements.
+2026-02-04 | a1d4968 | Thomas Linden | refactor: Embed Prism themes directly as raw CSS strings in CodeBlock component.
+2026-02-04 | 131833e | Thomas Linden | chore: Update minified JavaScript bundle in docs/index.html.
+2026-02-04 | 2f65aa1 | Thomas Linden | feat: Implement Prism.js for syntax highlighting in code blocks across components and update `t_paired` test data.
+2026-02-03 | 8c9f963 | Thomas Linden | refactor: Remove statistical test export script, old data, and schema files, along with related Vite configuration aliases.
+2026-02-03 | 7efaaad | Thomas Linden | feat: Implement markdown and LaTeX rendering for test descriptions and assumptions, improve theme toggling, and update build scripts.
+2025-12-18 | 756148a | Thomas Linden | Add favicon links to index.html
+2025-12-18 | 4fa41a0 | Thomas Linden | Delete docs/favicon.png
+2025-12-18 | a3afbe6 | Thomas Linden | Add files via upload
+2025-12-18 | 8b58280 | Thomas Linden | Update live site and offline package links in README
+2025-12-18 | d48f979 | thomasmlinden | Saved progress at the end of the loop
+2025-12-18 | 936dbb4 | thomasmlinden | Saved progress after completing a task
+2025-12-18 | bd5780d | thomasmlinden | Transitioned from Plan to Build mode
+2025-12-18 | d468e00 | thomasmlinden | Saved progress at the end of the loop
+2025-12-18 | 3672196 | thomasmlinden | Saved progress after completing a task
+2025-12-18 | 1d58db7 | thomasmlinden | Transitioned from Plan to Build mode
+2025-12-18 | cf8fce2 | Thomas Linden | Add files via upload
+2025-12-18 | d43a8dd | Thomas Linden | Add files via upload
+2025-12-18 | d28910f | Thomas Linden | Revise README with images and feature descriptions
+2025-12-18 | 45f03f8 | Thomas Linden | Update readme images
+2025-12-18 | a5844b8 | Thomas Linden | Add readme images
+2025-12-18 | aa724d4 | Thomas Linden | Enhance README with offline deployment information
+2025-12-18 | 170eb9d | Thomas Linden | Clarify site status and add offline package details
+2025-12-18 | 35c3563 | Thomas Linden | Remove duplicate offline html
+2025-12-18 | d25c6f6 | thomasmlinden | Saved progress at the end of the loop
+2025-12-18 | be1d52f | thomasmlinden | Saved progress after completing a task
+2025-12-18 | 8cc48c1 | thomasmlinden | Transitioned from Plan to Build mode
+2025-12-18 | 086718f | thomasmlinden | Saved progress at the end of the loop
+2025-12-18 | c0054ef | thomasmlinden | Saved progress after completing a task
+2025-12-18 | b39b6bb | thomasmlinden | Transitioned from Plan to Build mode
+2025-12-18 | c25f278 | thomasmlinden | Saved progress at the end of the loop
+2025-12-18 | 423b9e6 | thomasmlinden | Create an offline executable version of the application
+2025-12-18 | 6c721a9 | thomasmlinden | Add a single-file HTML version of the application for offline use
+2025-12-18 | a8396f2 | thomasmlinden | Transitioned from Plan to Build mode
+2025-12-18 | b650761 | Thomas Linden | Add README.md for StatsTree project
+2025-12-18 | f4d3a42 | thomasmlinden | Update wizard to remove start over button and add reset button
+2025-12-18 | 3081163 | thomasmlinden | Add smooth sliding animation for navigation underline between pages
+2025-12-18 | 591fea1 | thomasmlinden | Add smooth animation for navigation links between pages
+2025-12-18 | 5adf7cd | thomasmlinden | Prevent navigation underline from animating on initial page load
+2025-12-18 | d8629b9 | thomasmlinden | Improve navigation link animation for a smoother user experience
+2025-12-18 | 4720c09 | thomasmlinden | Add consistent navigation with animated underline to all pages
+2025-12-18 | 880ef2f | thomasmlinden | Update navigation buttons to be clearly visible and labeled
+2025-12-18 | b74ef61 | thomasmlinden | Improve search results ranking for phrase matches
+2025-12-18 | 7b9aaa6 | thomasmlinden | Improve search functionality with advanced matching and relevance scoring
+2025-12-18 | be7450e | thomasmlinden | Enhance statistical tool with fuzzy search and UI improvements
+2025-12-18 | 24aa633 | thomasmlinden | Update wizard and results page headers to include flowchart and start over options
+2025-12-18 | 4cb7c1f | thomasmlinden | Rename Modify Selections to Reset Wizard and remove New Selection
+2025-12-18 | 2a6c80e | thomasmlinden | Remove pencil icons from the decision summary display
+2025-12-18 | a3184b4 | thomasmlinden | Allow users to edit previous selections from the results page
+2025-12-18 | 2ddf3dc | thomasmlinden | Allow users to edit specific selections in the wizard
+2025-12-18 | 2a738a6 | thomasmlinden | Shorten the length of badge text for comparison cards
+2025-12-18 | 8218776 | thomasmlinden | Adjust label positions and ensure content is fully visible
+2025-12-18 | c0259af | thomasmlinden | Allow users to compare alternative tests directly from the browse all page
+2025-12-18 | 683c3e6 | thomasmlinden | Adjust comparison display to prevent text cutoff
+2025-12-18 | 26328e9 | thomasmlinden | Align statistical test comparison sections and standardize alternative selection behavior
+2025-12-18 | ab4478f | thomasmlinden | Align alternative test selection with wizard and flowchart functionality
+2025-12-18 | 72a5d2e | thomasmlinden | Adjust comparison modal size based on number of tests
+2025-12-18 | c370fb4 | thomasmlinden | Increase space and align sections in the comparison window
+2025-12-18 | 69b8196 | thomasmlinden | Display all selected tests side-by-side for comparison
+2025-12-18 | 4dc0fc1 | thomasmlinden | Update test comparison to show only two tests at a time
+2025-12-18 | 7c1cfc3 | thomasmlinden | Improve test comparison display and navigation in the application
+2025-12-18 | 005508c | thomasmlinden | Add navigation for comparing statistical tests side-by-side
+2025-12-18 | 35211a4 | thomasmlinden | Update the test detail view to match the flowchart's style
+2025-12-18 | 03d4de1 | thomasmlinden | Update website navigation to use a route icon consistently
+2025-12-18 | adfd086 | thomasmlinden | Update page icon to represent navigation and decision paths
+2025-12-18 | 25f7451 | thomasmlinden | Simplify code example placeholders in results and details
+2025-12-18 | 18f5f78 | thomasmlinden | Add code examples for statistical tests to display Python and R implementations
+2025-12-18 | be64fe0 | thomasmlinden | Add placeholders for statistical code examples
+2025-12-18 | 88086f4 | thomasmlinden | Update test details to include Wikipedia links and code examples
+2025-12-18 | 01bcd31 | thomasmlinden | Make test details appear as a centered floating modal
+2025-12-18 | 0996247 | thomasmlinden | Change test details view to a centered floating modal
+2025-12-18 | 741ad0f | thomasmlinden | Published your App
+2025-12-18 | f3246c4 | thomasmlinden | Move compare button to appear next to clear all button
+2025-12-18 | d53c1d7 | thomasmlinden | Add a button to clear all selected tests from comparison
+2025-12-18 | 6cfeb5d | thomasmlinden | Make flowchart path steps clickable to navigate tree
+2025-12-18 | 1041edc | thomasmlinden | Add navigation buttons to cycle through alternative statistical tests
+2025-12-18 | 339a7ec | thomasmlinden | Add comparison functionality to the flowchart's test detail panel
+2025-12-18 | 2539787 | thomasmlinden | Alphabetize assumptions and usage instructions for statistical tests
+2025-12-18 | af01909 | thomasmlinden | Remove unnecessary close buttons from test comparisons
+2025-12-18 | 9f616e0 | thomasmlinden | Make test comparisons a floating modal with rounded corners
+2025-12-18 | 32aeb6c | thomasmlinden | Allow comparing alternative statistical tests side-by-side
+2025-12-18 | cff7f16 | thomasmlinden | Link alternative tests in recommendations to browse all tests page
+2025-12-18 | 8747f1d | thomasmlinden | Update branding to StatsTree and improve dark mode visibility
+2025-12-11 | b456e35 | thomasmlinden | Published your App
+2025-12-11 | 6f4da0c | thomasmlinden | Add "Learn More" links and auto-advance wizard functionality
+2025-12-11 | 6999842 | thomasmlinden | Add Wikipedia links to statistical test details and export
+2025-12-11 | 74e05b3 | thomasmlinden | Update statistical test data with detailed properties and relationships
+2025-12-11 | f095fc4 | thomasmlinden | Update homepage to show accurate counts of tests and categories
+2025-12-11 | eae9839 | thomasmlinden | Adjust flowchart layout to group connected nodes
+2025-12-11 | 3fc2be6 | thomasmlinden | Align flowchart structure with wizard steps and research goals
+2025-12-11 | 5b793c7 | thomasmlinden | Improve statistical test recommendations for specific research goals and assumptions
+2025-12-11 | 8d8fab7 | thomasmlinden | Filter all dropdowns based on other selections
+2025-12-11 | 68653b8 | thomasmlinden | Make header consistent across all pages and improve test link navigation
+2025-12-11 | 8ce3d32 | thomasmlinden | Make alternative test links clickable across the application
+2025-12-11 | 6f17bfc | thomasmlinden | Saved progress at the end of the loop
+2025-12-11 | 510ac7d | thomasmlinden | Enhance statistical test recommendations and UI for test comparison
+2025-12-11 | bed1680 | thomasmlinden | Add detailed properties and links for statistical tests
+2025-12-11 | 7c1abd1 | thomasmlinden | Filter categories shown based on selected statistical method family
+2025-12-11 | f19a96a | thomasmlinden | Saved progress at the end of the loop
+2025-12-11 | d0d5d78 | thomasmlinden | Dynamically generate statistical test method families from data
+2025-12-11 | 69a7dc9 | thomasmlinden | Add method family filtering and category IDs to statistical tests
+2025-12-11 | dee7eda | thomasmlinden | Update statistical test data structure and add new category filters
+2025-12-11 | 19eb844 | thomasmlinden | Add an exportable JSON file containing all statistical test data
+2025-12-11 | a606b4b | thomasmlinden | Document the interactive decision tree and its features
+2025-12-11 | 2874aa9 | thomasmlinden | Improve flowchart logic by correctly truncating selections when switching branches
+2025-12-11 | ccb724d | thomasmlinden | Make the flowchart interactive and only show relevant parts
+2025-12-11 | 2209c3c | thomasmlinden | Introduce interactivity to the statistical test selection wizard
+2025-12-11 | f3ca07f | thomasmlinden | Improve flowchart layout to prevent overlapping nodes
+2025-12-11 | e9f0d05 | thomasmlinden | Improve spacing and layout of the statistical test flowchart
+2025-12-11 | 29df894 | thomasmlinden | Saved progress at the end of the loop
+2025-12-11 | f947dc4 | thomasmlinden | Improve flowchart structure and appearance for better test selection visualization
+2025-12-11 | 2211a6c | thomasmlinden | Saved progress at the end of the loop
+2025-12-11 | 3bd59d0 | thomasmlinden | Add a visual flowchart to help researchers select statistical tests
+2025-12-11 | f261cc3 | thomasmlinden | Transitioned from Plan to Build mode
+2025-12-10 | 6c82014 | thomasmlinden | Add documentation for the statistical test selection application
+2025-12-10 | 91ad913 | thomasmlinden | Expand statistical analysis options and improve test filtering
+2025-12-10 | 47abb7e | thomasmlinden | Add interactive statistical test selection tool with detailed results
+2025-12-10 | dc906a0 | thomasmlinden | Extracted stack files
+2025-12-10 | c73fbf0 | thomasmlinden | Initial commit

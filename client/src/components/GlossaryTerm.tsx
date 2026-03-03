@@ -9,7 +9,11 @@ interface GlossaryTermProps {
 export function GlossaryTerm({ term }: GlossaryTermProps) {
   // Find definition from either glossary or stats lists
   const getTermDetails = (termName: string) => {
-    const gTerm = glossaryTerms.find((t) => t.term.toLowerCase() === termName.toLowerCase());
+    const gTerm = glossaryTerms.find(
+      (t) =>
+        t.term.toLowerCase() === termName.toLowerCase() ||
+        t.aliases?.some((a) => a.toLowerCase() === termName.toLowerCase())
+    );
     if (gTerm) return { name: gTerm.term, desc: gTerm.definition };
 
     const sTerm = statisticalTests.find((t) => t.name.toLowerCase() === termName.toLowerCase());

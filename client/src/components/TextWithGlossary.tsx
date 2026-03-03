@@ -11,7 +11,10 @@ interface TextWithGlossaryProps {
   text: string;
 }
 
-const allTerms = [...glossaryTerms.map((t) => t.term), ...statisticalTests.map((t) => t.name)];
+const allTerms = [
+  ...glossaryTerms.flatMap((t) => [t.term, ...(t.aliases || [])]),
+  ...statisticalTests.map((t) => t.name),
+];
 
 allTerms.sort((a, b) => b.length - a.length);
 
