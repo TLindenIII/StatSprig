@@ -13,6 +13,7 @@ import Home from "@/pages/Home";
 import Wizard from "@/pages/Wizard";
 import Results from "@/pages/Results";
 import AllTests from "@/pages/AllTests";
+import { FeedbackModal } from "@/components/FeedbackModal";
 import CascadingFlow from "@/pages/CascadingFlow";
 import Glossary from "@/pages/Glossary";
 
@@ -60,6 +61,7 @@ function App() {
               ) : (
                 <Routes />
               )}
+              <FeedbackModal />
             </NavProvider>
           </WizardProvider>
         </GlossaryProvider>
