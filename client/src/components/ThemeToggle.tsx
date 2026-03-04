@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
-import { Moon, Sun } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Expand } from "@theme-toggles/react";
+import "@theme-toggles/react/css/Expand.css";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 
 export function ThemeToggle() {
@@ -47,7 +48,10 @@ export function ThemeToggle() {
     <Tooltip>
       <TooltipTrigger asChild>
         <Button variant="ghost" size="icon" onClick={toggleTheme} data-testid="button-theme-toggle">
-          {theme === "light" ? <Moon className="h-5 w-5" /> : <Sun className="h-5 w-5" />}
+          <div className="text-xl flex items-center justify-center">
+            {/* @ts-expect-error - Known typing discrepancy with React 19 props in @theme-toggles/react */}
+            <Expand toggled={theme === "dark"} duration={750} />
+          </div>
         </Button>
       </TooltipTrigger>
       <TooltipContent>
