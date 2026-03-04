@@ -13,9 +13,9 @@ export function GlossaryToggle() {
           variant="ghost"
           size="icon"
           onClick={toggleGlossary}
-          className={
+          className={`hidden md:inline-flex ${
             isGlossaryEnabled ? "text-primary bg-primary/10" : "text-muted-foreground opacity-50"
-          }
+          }`}
           data-testid="button-glossary-toggle"
         >
           <Highlighter className="h-5 w-5" />

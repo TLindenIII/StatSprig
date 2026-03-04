@@ -86,12 +86,15 @@ const createGlossaryRenderer =
     );
   };
 
+import { useIsMobile } from "@/hooks/use-mobile";
+
 export function TextWithGlossary({ text }: TextWithGlossaryProps) {
   const { isGlossaryEnabled } = useGlossary();
+  const isMobile = useIsMobile();
 
   if (!text) return null;
 
-  if (!isGlossaryEnabled) {
+  if (!isGlossaryEnabled || isMobile) {
     return (
       <ReactMarkdown remarkPlugins={[remarkMath]} rehypePlugins={[rehypeKatex]}>
         {text}
