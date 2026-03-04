@@ -44,7 +44,7 @@ export function DecisionSummary({
                 <div key={step.id} className="flex items-center">
                   <Badge
                     variant="secondary"
-                    className={`flex items-center gap-1 ${isClickable ? "cursor-pointer hover:bg-secondary/80" : ""}`}
+                    className={`flex items-center gap-1 whitespace-normal text-left h-auto py-1.5 ${isClickable ? "cursor-pointer hover:bg-secondary/80" : ""}`}
                     onClick={() =>
                       isClickable && onStepClick(steps.findIndex((s) => s.id === step.id))
                     }

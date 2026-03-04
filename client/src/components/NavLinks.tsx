@@ -111,7 +111,7 @@ export function NavLinks({ currentPage }: NavLinksProps) {
             <Link
               href={item.href}
               data-testid={`nav-${item.id}`}
-              className={`relative px-3 py-1.5 text-sm font-medium transition-colors duration-200 inline-block ${
+              className={`relative px-2 sm:px-3 py-1.5 text-sm font-medium transition-colors duration-200 inline-block ${
                 isActive ? "text-foreground" : "text-muted-foreground hover:text-foreground"
               }`}
             >

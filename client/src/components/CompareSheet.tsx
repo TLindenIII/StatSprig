@@ -7,10 +7,12 @@ import {
   CheckCircle,
   AlertCircle,
   ArrowRight,
+  CircleHelp,
   GitCompare,
   ChevronLeft,
   ChevronRight,
   DraftingCompass,
+  Blocks,
 } from "lucide-react";
 import type { StatTest } from "@/lib/statsData";
 import ReactMarkdown from "react-markdown";
@@ -48,14 +50,14 @@ export function CompareSheet({
   return (
     <Dialog open={open} onOpenChange={(isOpen) => !isOpen && onClose()}>
       <DialogContent
-        className={`max-h-[90vh] p-0 overflow-hidden ${tests.length === 3 ? "max-w-[90vw]" : "max-w-4xl"}`}
+        className={`w-[95vw] sm:w-full p-0 overflow-hidden ${tests.length === 3 ? "max-w-[90vw]" : "max-w-4xl"}`}
         data-testid="compare-sheet"
       >
         <DialogHeader className="px-6 pt-6 pb-4 border-b bg-muted/30">
           <DialogTitle className="flex items-center gap-2 text-xl">
             {context === "companion" ? (
               <>
-                <DraftingCompass className="w-5 h-5 text-primary" />
+                <Blocks className="w-5 h-5 text-primary" />
                 Useful Companions
               </>
             ) : context === "wizard" ? (
@@ -77,31 +79,26 @@ export function CompareSheet({
           </DialogTitle>
         </DialogHeader>
 
-        <ScrollArea className="max-h-[calc(90vh-100px)]">
+        <ScrollArea className="max-h-[80vh]">
           <div
-            className={`p-6 grid gap-4 grid-cols-1 ${tests.length === 3 ? "md:grid-cols-3" : tests.length === 2 ? "md:grid-cols-2" : "md:grid-cols-1 max-w-2xl mx-auto"}`}
+            className={`p-6 grid gap-4 min-w-0 grid-cols-1 ${tests.length === 3 ? "md:grid-cols-3" : tests.length === 2 ? "md:grid-cols-2" : "md:grid-cols-1 max-w-2xl mx-auto"}`}
           >
             {tests.map((test, index) => (
               <Card
                 key={test.id}
-                className={`relative flex flex-col ${context === "wizard" && index === 0 ? "border-primary" : ""}`}
+                className={`relative min-w-0 flex flex-col ${context === "wizard" && index === 0 ? "border-primary" : ""}`}
                 data-testid={`compare-card-${test.id}`}
               >
                 {context === "wizard" && index === 0 && (
-                  <Badge className="absolute -top-2.5 left-3 text-xs w-fit">Recommended</Badge>
+                  <Badge className="absolute -top-3 left-3 text-xs w-fit">Recommended</Badge>
                 )}
                 {context === "wizard" && index === 1 && (
-                  <Badge variant="secondary" className="absolute -top-2.5 left-3 text-xs w-fit">
+                  <Badge variant="secondary" className="absolute -top-3 left-3 text-xs w-fit">
                     Alternative
                   </Badge>
                 )}
                 <CardHeader className="pb-3 pt-6">
                   <CardTitle className="font-mono text-base leading-tight">{test.name}</CardTitle>
-                  <div className="flex gap-1 flex-wrap mt-2">
-                    <Badge variant="outline" className="text-xs">
-                      {test.category}
-                    </Badge>
-                  </div>
                 </CardHeader>
                 <CardContent className="space-y-4 text-sm">
                   <div className="text-muted-foreground text-xs">
@@ -133,12 +130,12 @@ export function CompareSheet({
 
                   <div className="space-y-2">
                     <h5 className="font-medium flex items-center gap-1 text-xs">
-                      <AlertCircle className="w-3.5 h-3.5 text-amber-600 dark:text-amber-400" />
+                      <AlertCircle className="w-3.5 h-3.5" />
                       Assumptions
                     </h5>
-                    <ul className="space-y-1 pl-1">
+                    <ul className="space-y-1 pl-5">
                       {test.assumptions.slice(0, 4).map((assumption, i) => (
-                        <li key={i} className="flex items-start gap-1.5 text-xs">
+                        <li key={i} className="flex items-start gap-2 text-xs">
                           <CheckCircle className="w-3 h-3 text-primary mt-0.5 flex-shrink-0" />
                           <div className="markdown-inline">
                             <ReactMarkdown
@@ -160,13 +157,13 @@ export function CompareSheet({
 
                   <div className="space-y-2">
                     <h5 className="font-medium flex items-center gap-1 text-xs">
-                      <ArrowRight className="w-3.5 h-3.5 text-blue-600 dark:text-blue-400" />
+                      <CircleHelp className="w-3.5 h-3.5" />
                       When to Use
                     </h5>
-                    <ul className="space-y-1 pl-1">
+                    <ul className="space-y-1 pl-5">
                       {test.whenToUse.slice(0, 3).map((use, i) => (
-                        <li key={i} className="flex items-start gap-1.5 text-xs">
-                          <ArrowRight className="w-3 h-3 text-muted-foreground mt-0.5 flex-shrink-0" />
+                        <li key={i} className="flex items-start gap-2 text-xs">
+                          <ArrowRight className="w-3 h-3 text-primary mt-0.5 flex-shrink-0" />
                           <div className="markdown-inline">
                             <ReactMarkdown
                               remarkPlugins={[remarkMath]}
@@ -188,32 +185,32 @@ export function CompareSheet({
               </Card>
             ))}
           </div>
-        </ScrollArea>
 
-        {showNavigation && (
-          <div className="border-t px-6 py-4 flex justify-end gap-2 bg-muted/30">
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={onPrev}
-              disabled={!hasPrev}
-              data-testid="button-prev-alternative"
-            >
-              <ChevronLeft className="w-4 h-4 mr-1" />
-              Previous
-            </Button>
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={onNext}
-              disabled={!hasNext}
-              data-testid="button-next-alternative"
-            >
-              Next
-              <ChevronRight className="w-4 h-4 ml-1" />
-            </Button>
-          </div>
-        )}
+          {showNavigation && (
+            <div className="border-t mt-4 px-6 py-4 flex justify-end gap-2 bg-muted/30">
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={onPrev}
+                disabled={!hasPrev}
+                data-testid="button-prev-alternative"
+              >
+                <ChevronLeft className="w-4 h-4 mr-1" />
+                Previous
+              </Button>
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={onNext}
+                disabled={!hasNext}
+                data-testid="button-next-alternative"
+              >
+                Next
+                <ChevronRight className="w-4 h-4 ml-1" />
+              </Button>
+            </div>
+          )}
+        </ScrollArea>
       </DialogContent>
     </Dialog>
   );

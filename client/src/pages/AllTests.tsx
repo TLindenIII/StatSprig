@@ -147,6 +147,7 @@ export default function AllTests() {
   const [selectedTest, setSelectedTest] = useState<StatTest | null>(null);
   const [compareTests, setCompareTests] = useState<StatTest[]>([]);
   const [showCompare, setShowCompare] = useState(false);
+  const [openedViaAlternative, setOpenedViaAlternative] = useState(false);
 
   // Handle test query parameter to auto-open test detail
   useEffect(() => {
@@ -303,6 +304,7 @@ export default function AllTests() {
         }
         return null; // Close detail sheet
       });
+      setOpenedViaAlternative(true);
       setShowCompare(true);
     }
   }, []);
@@ -465,7 +467,10 @@ export default function AllTests() {
               <Button
                 variant="default"
                 size="sm"
-                onClick={() => setShowCompare(true)}
+                onClick={() => {
+                  setOpenedViaAlternative(false);
+                  setShowCompare(true);
+                }}
                 disabled={compareTests.length < 2}
                 data-testid="button-compare"
               >
@@ -492,6 +497,7 @@ export default function AllTests() {
                       const altTest = statisticalTests.find((t) => t.id === altId);
                       if (altTest) {
                         setCompareTests([test, altTest]);
+                        setOpenedViaAlternative(true);
                         setShowCompare(true);
                       }
                     }}
@@ -533,7 +539,13 @@ export default function AllTests() {
       <CompareSheet
         tests={compareTests}
         open={showCompare}
-        onClose={() => setShowCompare(false)}
+        onClose={() => {
+          setShowCompare(false);
+          if (openedViaAlternative) {
+            setCompareTests([]);
+            setOpenedViaAlternative(false);
+          }
+        }}
         onRemoveTest={(testId: string) =>
           setCompareTests(compareTests.filter((t) => t.id !== testId))
         }

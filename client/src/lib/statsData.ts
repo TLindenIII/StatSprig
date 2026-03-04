@@ -42,9 +42,9 @@ export const statisticalTests: StatTest[] = [
       "Population (or sample) approximately normal, or n large with no extreme outliers",
     ],
     whenToUse: [
-      "Compare a sample mean to a known/hypothesized value ($\\mu_0$)",
+      "Compare a sample mean to a known/hypothesized value ($\mu_0$)",
       "You have one group and a continuous outcome",
-      "You want a t-based CI and p-value for the mean difference from $\\mu_0$",
+      "You want a t-based CI and p-value for the mean difference from $\mu_0$",
     ],
     category: "One Sample",
     outcome: "continuous",
@@ -63,10 +63,10 @@ export const statisticalTests: StatTest[] = [
     assumptions: [
       "Binary outcome",
       "Independent trials",
-      "Large-sample normal approximation is reasonable (e.g., n*p0 and n*(1-p0) sufficiently large)",
+      "Large-sample normal approximation is reasonable (e.g., $n*p_0$ and $n*(1-p_0)$ sufficiently large)",
     ],
     whenToUse: [
-      "One-sample proportion test against p0 with moderate/large n",
+      "One-sample proportion test against $p_0$ with moderate/large n",
       "Quick approximation when exact binomial is not required",
     ],
     category: "One Sample",
@@ -89,7 +89,7 @@ export const statisticalTests: StatTest[] = [
       "Constant probability of success across trials",
     ],
     whenToUse: [
-      "One-sample proportion test against a hypothesized p0",
+      "One-sample proportion test against a hypothesized $p_0$",
       "Small samples or when normal approximation is questionable",
       "Exact CI for a proportion",
     ],

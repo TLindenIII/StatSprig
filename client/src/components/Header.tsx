@@ -32,9 +32,9 @@ export function Header({ currentPage }: HeaderProps) {
           */}
           <span className={currentPage === "home" ? "" : "hidden sm:inline"}>The Statlas</span>
         </Link>
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-1 sm:gap-2">
           {currentPage === "home" ? (
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-2 sm:gap-4">
               <Link
                 href="/glossary"
                 className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"

@@ -260,9 +260,9 @@ export default function Results() {
                     <div className="flex items-center gap-3">
                       <div className="h-8 w-1 bg-blue-500 rounded-full" />
                       <div>
-                        <h2 className="text-2xl font-semibold">Best Matches</h2>
+                        <h2 className="text-2xl font-semibold">Best Match</h2>
                         <p className="text-sm text-muted-foreground">
-                          Recommended based on your specific scenario
+                          Based on your specific scenario
                         </p>
                       </div>
                     </div>

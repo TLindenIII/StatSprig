@@ -8,10 +8,11 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+
 import {
   CheckCircle,
   AlertCircle,
-  Info,
+  CircleHelp,
   ArrowRight,
   GitCompare,
   ExternalLink,
@@ -29,7 +30,10 @@ interface TestResultCardProps {
   isComparing?: boolean;
   canCompare?: boolean;
   onAlternativeClick?: (testId: string) => void;
+  defaultExpanded?: string[];
 }
+
+import { cn } from "@/lib/utils";
 
 export const TestResultCard = React.memo(function TestResultCard({
   test,
@@ -39,24 +43,17 @@ export const TestResultCard = React.memo(function TestResultCard({
   isComparing = false,
   canCompare = true,
   onAlternativeClick,
+  defaultExpanded = [],
 }: TestResultCardProps) {
   return (
     <Card
-      className={isPrimary ? "border-blue-500 border-2 shadow-md" : ""}
+      className={cn("relative", isPrimary ? "border-blue-500 border-2 shadow-md" : "", "min-w-0")}
       data-testid={`test-result-${test.id}`}
     >
-      <CardHeader className="pb-3">
+      <CardHeader className="pb-3 pt-6">
         <div className="flex items-start justify-between gap-4 flex-wrap">
           <div className="space-y-1">
-            {isPrimary && (
-              <Badge variant="default" className="mb-2">
-                Recommended
-              </Badge>
-            )}
             <CardTitle className="font-mono text-xl">{test.name}</CardTitle>
-          </div>
-          <div className="flex gap-2 flex-wrap">
-            <Badge variant="outline">{test.category}</Badge>
           </div>
         </div>
       </CardHeader>
@@ -117,7 +114,7 @@ export const TestResultCard = React.memo(function TestResultCard({
           </div>
         )}
 
-        <Accordion type="single" collapsible className="w-full">
+        <Accordion key={test.id} type="multiple" defaultValue={defaultExpanded} className="w-full">
           <AccordionItem value="assumptions">
             <AccordionTrigger className="text-sm font-medium">
               <span className="flex items-center gap-2">
@@ -126,7 +123,7 @@ export const TestResultCard = React.memo(function TestResultCard({
               </span>
             </AccordionTrigger>
             <AccordionContent>
-              <ul className="space-y-2">
+              <ul className="space-y-2 pl-2">
                 {test.assumptions.map((assumption, i) => (
                   <li key={i} className="flex items-start gap-2 text-sm">
                     <CheckCircle className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
@@ -142,15 +139,15 @@ export const TestResultCard = React.memo(function TestResultCard({
           <AccordionItem value="when-to-use">
             <AccordionTrigger className="text-sm font-medium">
               <span className="flex items-center gap-2">
-                <Info className="w-4 h-4" />
+                <CircleHelp className="w-4 h-4" />
                 When to Use
               </span>
             </AccordionTrigger>
             <AccordionContent>
-              <ul className="space-y-2">
+              <ul className="space-y-2 pl-2">
                 {test.whenToUse.map((use, i) => (
                   <li key={i} className="flex items-start gap-2 text-sm">
-                    <ArrowRight className="w-4 h-4 text-muted-foreground mt-0.5 flex-shrink-0" />
+                    <ArrowRight className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
                     <div className="markdown-inline">
                       <TextWithGlossary text={use} />
                     </div>
@@ -169,7 +166,7 @@ export const TestResultCard = React.memo(function TestResultCard({
                 </span>
               </AccordionTrigger>
               <AccordionContent>
-                <div className="flex flex-wrap gap-2">
+                <div className="flex flex-wrap gap-2 pt-1 pl-2">
                   {test.alternativeLinks && test.alternativeLinks.length > 0 ? (
                     test.alternativeLinks.map((altId) => {
                       const altTest = statisticalTests.find((t) => t.id === altId);
@@ -223,28 +220,26 @@ export const TestResultCard = React.memo(function TestResultCard({
               </span>
             </AccordionTrigger>
             <AccordionContent>
-              <div className="space-y-6 mt-2">
-                <div>
-                  <h5 className="text-sm font-medium mb-2 flex items-center gap-2">
-                    <Badge variant="outline" className="text-xs">
-                      Python
-                    </Badge>
-                  </h5>
-                  <CodeBlock
-                    code={test.pythonCode || `# Python code example coming soon`}
-                    lang="python"
-                  />
+              <div className="space-y-6 pt-2">
+                <div className="w-full">
+                  <h6 className="text-[10px] uppercase font-bold tracking-wider mb-2 flex items-center gap-2 text-muted-foreground">
+                    Python
+                  </h6>
+                  <div className="max-w-full overflow-x-auto rounded-md border text-xs">
+                    <CodeBlock
+                      code={test.pythonCode || `# Python code example coming soon`}
+                      lang="python"
+                    />
+                  </div>
                 </div>
 
-                <hr className="border-border my-4" />
-
-                <div>
-                  <h5 className="text-sm font-medium mb-2 flex items-center gap-2">
-                    <Badge variant="outline" className="text-xs">
-                      R
-                    </Badge>
-                  </h5>
-                  <CodeBlock code={test.rCode || `# R code example coming soon`} lang="r" />
+                <div className="w-full">
+                  <h6 className="text-[10px] uppercase font-bold tracking-wider mb-2 flex items-center gap-2 text-muted-foreground">
+                    R
+                  </h6>
+                  <div className="max-w-full overflow-x-auto rounded-md border text-xs">
+                    <CodeBlock code={test.rCode || `# R code example coming soon`} lang="r" />
+                  </div>
                 </div>
               </div>
             </AccordionContent>

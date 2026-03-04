@@ -3,6 +3,7 @@ import { Header } from "@/components/Header";
 import { wizardLogic } from "@/lib/wizardKeys";
 import { statisticalTests, StatTest } from "@/lib/statsData";
 import { TestTile } from "@/components/TestTile";
+import { TestResultCard } from "@/components/TestResultCard";
 import { TestDetailSheet } from "@/components/TestDetailSheet";
 import { CompareSheet } from "@/components/CompareSheet";
 import { ChevronRight, RotateCcw, Info } from "lucide-react";
@@ -10,8 +11,12 @@ import { Button } from "@/components/ui/button";
 import ReactMarkdown from "react-markdown";
 import remarkMath from "remark-math";
 import rehypeKatex from "rehype-katex";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 export default function CascadingFlow() {
+  const isMobile = useIsMobile();
+  const [expandedMobileOption, setExpandedMobileOption] = useState<string | null>(null);
+
   // State to track selections at each step ID
   const [selections, setSelections] = useState<Record<string, string>>({});
 
@@ -97,7 +102,7 @@ export default function CascadingFlow() {
     return { panes: list, finalTags: accumulatedTags };
   }, [selections]);
 
-  // Auto-scroll to the rightmost pane whenever panes change
+  // Auto-scroll to the rightmost pane whenever selections change
   useEffect(() => {
     if (scrollContainerRef.current) {
       const container = scrollContainerRef.current;
@@ -109,7 +114,7 @@ export default function CascadingFlow() {
         });
       }, 50);
     }
-  }, [panes.length]);
+  }, [selections]);
 
   const handleSelection = (stepId: string, value: string) => {
     setSelections((prev) => {
@@ -255,7 +260,7 @@ export default function CascadingFlow() {
               <div
                 key="leaf"
                 style={{ zIndex: 40 - index }}
-                className="w-[450px] shrink-0 border-r bg-background snap-center flex flex-col relative animate-in slide-in-from-left-12 duration-300"
+                className="w-[85vw] sm:w-[450px] shrink-0 border-r bg-background snap-center flex flex-col relative animate-in slide-in-from-left-12 duration-300"
               >
                 <div className="p-6 border-b bg-background sticky top-0 z-10 flex items-start justify-between h-[140px] pb-4">
                   <h2 className="text-xl font-bold font-serif">Results</h2>
@@ -356,7 +361,7 @@ export default function CascadingFlow() {
             <div
               key={pane.id}
               style={{ zIndex: 40 - index }}
-              className={`w-80 shrink-0 border-r border-border transition-colors duration-300 snap-center flex flex-col relative
+              className={`w-[85vw] sm:w-80 shrink-0 border-r border-border transition-colors duration-300 snap-center flex flex-col relative
                 bg-background ${!selections[pane.id] ? "shadow-[10px_0_15px_-3px_rgba(0,0,0,0.05)]" : ""}
                 animate-in slide-in-from-left-12 duration-300`}
             >
@@ -375,18 +380,33 @@ export default function CascadingFlow() {
                 {pane.options.map((option: any) => {
                   const isSelected = selections[pane.id] === option.value;
                   const hasSelection = !!selections[pane.id];
+                  const isExpandedMobile =
+                    isMobile && expandedMobileOption === `${pane.id}-${option.value}`;
 
                   return (
                     <button
                       key={option.value}
-                      onClick={() => handleSelection(pane.id, option.value)}
+                      onClick={() => {
+                        if (
+                          isMobile &&
+                          !isSelected &&
+                          expandedMobileOption !== `${pane.id}-${option.value}`
+                        ) {
+                          setExpandedMobileOption(`${pane.id}-${option.value}`);
+                          return;
+                        }
+                        handleSelection(pane.id, option.value);
+                        if (isMobile) setExpandedMobileOption(null);
+                      }}
                       className={`w-full text-left p-4 rounded-xl transition-all duration-300 flex items-center justify-between group
                         ${
                           isSelected
                             ? "bg-primary text-primary-foreground shadow-md ring-2 ring-primary ring-offset-2 ring-offset-background"
-                            : hasSelection
-                              ? "bg-muted text-muted-foreground hover:bg-muted/80"
-                              : "bg-card hover:bg-accent hover:shadow-sm border border-border shadow-sm"
+                            : isExpandedMobile
+                              ? "bg-accent text-foreground border border-border shadow-sm"
+                              : hasSelection
+                                ? "bg-muted text-muted-foreground hover:bg-muted/80"
+                                : "bg-card hover:bg-accent hover:shadow-sm border border-border shadow-sm"
                         }
                       `}
                     >
@@ -399,7 +419,7 @@ export default function CascadingFlow() {
                         {option.description && (
                           <div
                             className={`grid transition-all duration-300
-                            ${isSelected ? "grid-rows-[1fr] opacity-100 mt-1" : "grid-rows-[0fr] opacity-0 group-hover:grid-rows-[1fr] group-hover:opacity-100 group-hover:mt-1"}
+                            ${isSelected || isExpandedMobile ? "grid-rows-[1fr] opacity-100 mt-1" : "grid-rows-[0fr] opacity-0 group-hover:grid-rows-[1fr] group-hover:opacity-100 group-hover:mt-1"}
                           `}
                           >
                             <div className="overflow-hidden">
@@ -420,7 +440,7 @@ export default function CascadingFlow() {
 
                       <div
                         className={`shrink-0 rounded-full p-1 transition-transform duration-200
-                        ${isSelected ? "bg-primary-foreground/20 translate-x-1" : "opacity-0 group-hover:opacity-100 group-hover:bg-background/50 group-hover:translate-x-1"}
+                        ${isSelected ? "bg-primary-foreground/20 translate-x-1 opacity-100" : isExpandedMobile ? "bg-background/50 translate-x-1 opacity-100" : "opacity-0 group-hover:opacity-100 group-hover:bg-background/50 group-hover:translate-x-1"}
                       `}
                       >
                         <ChevronRight
