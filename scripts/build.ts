@@ -1,6 +1,6 @@
 import { build as esbuild } from "esbuild";
 import { build as viteBuild } from "vite";
-import { rm, readFile, rename } from "fs/promises";
+import { rm, readFile, rename, copyFile } from "fs/promises";
 
 // server deps to bundle to reduce openat(2) syscalls
 // which helps cold start times
@@ -40,10 +40,14 @@ async function buildAll() {
 
   console.log("building static site for GitHub Pages...");
   await viteBuild({ configFile: "vite.static.config.ts" });
-  
+
   // Rename index-offline.html to index.html for GitHub Pages
   await rename("docs/index-offline.html", "docs/index.html");
   console.log("renamed index-offline.html → index.html");
+
+  // Copy OG image to docs for GitHub Pages social previews
+  await copyFile("client/public/twitter_card.png", "docs/twitter_card.png");
+  console.log("copied twitter_card.png → docs/");
 
   console.log("building server...");
   const pkg = JSON.parse(await readFile("package.json", "utf-8"));
