@@ -7,7 +7,6 @@ from scipy import stats # pip install scipy
 x = np.array([5.2, 4.9, 5.1, 5.0, 4.8, 5.3])
 mu0 = 5.0
 t_stat, p_val = stats.ttest_1samp(x, popmean=mu0)
-t_stat, p_val
 `.trim(),
 
   "one-proportion-z-test": `
@@ -16,7 +15,6 @@ import statsmodels.api as sm # pip install statsmodels
 successes, n = 56, 100
 p0 = 0.50
 z_stat, p_val = sm.stats.proportions_ztest(count=successes, nobs=n, value=p0)
-z_stat, p_val
 `.trim(),
 
   "binomial-test": `
@@ -35,7 +33,6 @@ from scipy import stats # pip install scipy
 a = np.array([10, 11, 9, 10, 12])
 b = np.array([8, 9, 7, 10, 9])
 t_stat, p_val = stats.ttest_ind(a, b, equal_var=True)
-t_stat, p_val
 `.trim(),
 
   "paired-t-test": `
@@ -45,7 +42,6 @@ from scipy import stats # pip install scipy
 pre  = np.array([100, 98, 102, 101, 99])
 post = np.array([103, 100, 104, 103, 101])
 t_stat, p_val = stats.ttest_rel(post, pre)
-t_stat, p_val
 `.trim(),
 
   "one-way-anova": `
@@ -56,7 +52,6 @@ g1 = np.array([5, 6, 5, 7])
 g2 = np.array([8, 9, 7, 10])
 g3 = np.array([6, 5, 7, 6])
 f_stat, p_val = stats.f_oneway(g1, g2, g3)
-f_stat, p_val
 `.trim(),
 
   "two-way-anova": `
@@ -94,7 +89,6 @@ import statsmodels.api as sm # pip install statsmodels
 count = np.array([45, 30])
 nobs  = np.array([100, 90])
 z_stat, p_val = sm.stats.proportions_ztest(count=count, nobs=nobs, value=0)
-z_stat, p_val
 `.trim(),
 
   "mann-whitney": `
@@ -104,7 +98,6 @@ from scipy import stats # pip install scipy
 a = np.array([1,2,3,4,5])
 b = np.array([3,4,5,6,7])
 u_stat, p_val = stats.mannwhitneyu(a, b, alternative="two-sided")
-u_stat, p_val
 `.trim(),
 
   "wilcoxon-signed-rank": `
@@ -114,7 +107,6 @@ from scipy import stats # pip install scipy
 pre  = np.array([10, 12, 11, 9, 10])
 post = np.array([11, 12, 12, 10, 11])
 w_stat, p_val = stats.wilcoxon(post, pre, alternative="two-sided")
-w_stat, p_val
 `.trim(),
 
   "kruskal-wallis": `
@@ -125,7 +117,6 @@ g1 = np.array([1,2,2,3])
 g2 = np.array([4,5,4,6])
 g3 = np.array([2,3,3,2])
 h_stat, p_val = stats.kruskal(g1, g2, g3)
-h_stat, p_val
 `.trim(),
 
   "friedman-test": `
@@ -136,7 +127,6 @@ cond1 = np.array([10, 12, 11, 9])
 cond2 = np.array([11, 13, 12, 10])
 cond3 = np.array([12, 14, 13, 11])
 stat, p_val = stats.friedmanchisquare(cond1, cond2, cond3)
-stat, p_val
 `.trim(),
 
   "pearson-correlation": `
@@ -146,7 +136,6 @@ from scipy import stats # pip install scipy
 x = np.array([1,2,3,4,5])
 y = np.array([2,1,4,3,5])
 r, p_val = stats.pearsonr(x, y)
-r, p_val
 `.trim(),
 
   "spearman-correlation": `
@@ -156,7 +145,6 @@ from scipy import stats # pip install scipy
 x = np.array([1,2,3,4,5])
 y = np.array([2,1,4,3,5])
 rho, p_val = stats.spearmanr(x, y)
-rho, p_val
 `.trim(),
 
   "partial-correlation": `
@@ -235,7 +223,6 @@ from scipy import stats # pip install scipy
 table = np.array([[20, 30, 10],
                   [25, 15, 20]])
 chi2, p, dof, expected = stats.chi2_contingency(table, correction=False)
-chi2, p, dof, expected
 `.trim(),
 
   "chi-square-2x2": `
@@ -245,7 +232,6 @@ from scipy import stats # pip install scipy
 table = np.array([[12, 5],
                   [ 3,10]])
 chi2, p, dof, expected = stats.chi2_contingency(table, correction=False)
-chi2, p
 `.trim(),
 
   "fisher-freeman-halton": `
@@ -260,7 +246,6 @@ table = [[21, 33, 20, 5],
 
 # Calculate the exact p-value
 p_value = fisher.exact(table)
-print(f"The exact p-value for the Fisher-Freeman-Halton test is: {p_value}")
 `.trim(),
 
   "fisher-exact": `
@@ -270,7 +255,6 @@ from scipy import stats # pip install scipy
 table = np.array([[12, 5],
                   [ 3,10]])
 oddsratio, p = stats.fisher_exact(table, alternative="two-sided")
-oddsratio, p
 `.trim(),
 
   "mcnemar-test": `
@@ -280,7 +264,6 @@ from statsmodels.stats.contingency_tables import mcnemar # pip install statsmode
 table = np.array([[30, 5],
                   [10,40]])
 res = mcnemar(table, exact=False, correction=True)
-res.statistic, res.pvalue
 `.trim(),
 
   "linear-mixed-model": `
@@ -341,7 +324,6 @@ from statsmodels.tsa.holtwinters import ExponentialSmoothing # pip install stats
 
 y = pd.Series([112,118,132,129,121,135,148,148,136,119,104,118])
 m = ExponentialSmoothing(y, trend="add", seasonal=None).fit()
-m.params
 `.trim(),
 
   "kaplan-meier": `
@@ -370,7 +352,6 @@ a = df[df["group"]=="A"]
 b = df[df["group"]=="B"]
 
 res = logrank_test(a["time"], b["time"], event_observed_A=a["event"], event_observed_B=b["event"])
-res.test_statistic, res.p_value
 `.trim(),
 
   "cox-regression": `
@@ -403,7 +384,6 @@ from scipy.cluster.hierarchy import linkage, fcluster # pip install scipy
 X = np.array([[1,2],[1,4],[1,0],[10,2],[10,4],[10,0]])
 Z = linkage(X, method="ward")
 labels = fcluster(Z, t=2, criterion="maxclust")
-labels
 `.trim(),
 
   "pca": `
@@ -488,7 +468,6 @@ for _ in range(B):
     perm_stats.append(perm[:n_a].mean() - perm[n_a:].mean())
 
 p_val = (np.sum(np.abs(perm_stats) >= abs(obs)) + 1) / (B + 1)
-obs, p_val
 `.trim(),
 
   "cross-validation": `
@@ -512,7 +491,6 @@ n = len(x)
 theta_i = np.array([np.delete(x, i).mean() for i in range(n)])
 theta_dot = theta_i.mean()
 jack_var = (n-1)/n * np.sum((theta_i - theta_dot)**2)
-theta_dot, jack_var
 `.trim(),
 
   "power-analysis": `
@@ -526,7 +504,6 @@ n = TTestPower().solve_power(effect_size=effect_size,
                              alpha=alpha, 
                              power=power, 
                              alternative="two-sided")
-n
 `.trim(),
 
   "bartlett-test": `
@@ -538,7 +515,6 @@ g2 = np.array([8,9,7,10], dtype=float)
 g3 = np.array([6,5,7,6], dtype=float)
 
 stat, p = stats.bartlett(g1, g2, g3)
-stat, p
 `.trim(),
 
   "brown-forsythe": `
@@ -551,7 +527,6 @@ g2 = np.array([8,9,7,10])
 g3 = np.array([6,5,7,6])
 
 stat, p = stats.levene(g1, g2, g3, center="median")
-stat, p
 `.trim(),
 
   "fligner-killeen": `
@@ -563,7 +538,6 @@ g2 = np.array([8,9,7,10])
 g3 = np.array([6,5,7,6])
 
 stat, p = stats.fligner(g1, g2, g3)
-stat, p
 `.trim(),
 
   "hartley-fmax": `
@@ -575,7 +549,6 @@ g3 = np.array([6,5,7,6])
 
 vars_ = np.array([np.var(g, ddof=1) for g in (g1, g2, g3)])
 fmax = vars_.max() / vars_.min()
-fmax
 `.trim(),
 
   "shapiro-wilk": `
@@ -584,7 +557,6 @@ from scipy import stats # pip install scipy
 
 x = np.array([1.2, 0.7, 1.5, 0.9, 1.1])
 stat, p = stats.shapiro(x)
-stat, p
 `.trim(),
 
   "kolmogorov-smirnov": `
@@ -594,7 +566,6 @@ from scipy import stats # pip install scipy
 x = np.array([1.2, 0.7, 1.5, 0.9, 1.1])
 z = (x - x.mean()) / x.std(ddof=1)
 stat, p = stats.kstest(z, "norm")
-stat, p
 `.trim(),
 
   "anderson-darling": `
@@ -603,7 +574,6 @@ from scipy import stats # pip install scipy
 
 x = np.array([1.2, 0.7, 1.5, 0.9, 1.1])
 res = stats.anderson(x, dist="norm", method="interpolate")
-res
 `.trim(),
 
   "dagostino-pearson": `
@@ -612,7 +582,6 @@ from scipy import stats # pip install scipy
 
 x = np.array([1.2, 0.7, 1.5, 0.9, 1.1, 1.3, 0.8, 1.0])
 stat, p = stats.normaltest(x)
-stat, p
 `.trim(),
 
   "levene-test": `
@@ -624,7 +593,6 @@ g2 = np.array([8,9,7,10])
 g3 = np.array([6,5,7,6])
 
 stat, p = stats.levene(g1, g2, g3, center="median")
-stat, p
 `.trim(),
 
   "durbin-watson": `
@@ -637,7 +605,6 @@ X = sm.add_constant(df["x"])
 m = sm.OLS(df["y"], X).fit()
 
 dw = durbin_watson(m.resid)
-dw
 `.trim(),
 
   "breusch-pagan": `
@@ -650,7 +617,6 @@ X = sm.add_constant(df["x"])
 m = sm.OLS(df["y"], X).fit()
 
 lm_stat, lm_p, f_stat, f_p = het_breuschpagan(m.resid, m.model.exog)
-lm_stat, lm_p, f_stat, f_p
 `.trim(),
 
   "vif": `
@@ -665,7 +631,6 @@ vifs = pd.DataFrame({
     "feature": X.columns,
     "VIF": [variance_inflation_factor(X.values, i) for i in range(X.shape[1])]
 })
-vifs
 `.trim(),
 
   "tukey-hsd": `
@@ -744,7 +709,6 @@ import numpy as np
 
 p = np.array([0.01, 0.04, 0.20, 0.003])
 p_adj = np.minimum(p * len(p), 1.0)
-p_adj
 `.trim(),
 
   "holm-bonferroni": `
@@ -757,7 +721,6 @@ p_sorted = p[order]
 adj_sorted = np.maximum.accumulate(np.minimum((m - np.arange(m)) * p_sorted, 1.0))
 p_adj = np.empty_like(adj_sorted)
 p_adj[order] = adj_sorted
-p_adj
 `.trim(),
 
   "benjamini-hochberg": `
@@ -772,7 +735,6 @@ bh = np.minimum.accumulate(bh[::-1])[::-1]
 bh = np.minimum(bh, 1.0)
 p_adj = np.empty_like(bh)
 p_adj[order] = bh
-p_adj
 `.trim(),
 
   "welch-t-test": `
@@ -782,7 +744,6 @@ from scipy import stats # pip install scipy
 a = np.array([10, 11, 9, 10, 12])
 b = np.array([8, 9, 7, 10, 9])
 t_stat, p_val = stats.ttest_ind(a, b, equal_var=False)
-t_stat, p_val
 `.trim(),
 
   "welch-anova": `
@@ -834,7 +795,6 @@ from scipy import stats # pip install scipy
 x = np.array([1,2,3,4,5])
 y = np.array([2,1,4,3,5])
 tau, p_val = stats.kendalltau(x, y)
-tau, p_val
 `.trim(),
 
   "point-biserial": `
@@ -844,7 +804,6 @@ from scipy import stats # pip install scipy
 y_bin = np.array([0,1,0,1,1,0])
 x_cont = np.array([2.1, 3.4, 1.9, 3.8, 4.0, 2.2])
 r, p_val = stats.pointbiserialr(y_bin, x_cont)
-r, p_val
 `.trim(),
 
   "cochran-q": `
@@ -859,7 +818,6 @@ df = pd.DataFrame({
 res = cochrans_q(df.to_numpy())
 stat = res.statistic
 p = res.pvalue
-stat, p
 `.trim(),
 
   "negative-binomial": `
@@ -972,7 +930,6 @@ import lightgbm as lgb # pip install lightgbm
 clf = lgb.LGBMClassifier() # see documentation for parameters
 clf.fit(X_train, y_train)
 y_pred=clf.predict(X_test)
-y_pred
 `.trim(),
 
   "catboost": `
@@ -1048,7 +1005,6 @@ from sklearn.cluster import DBSCAN # pip install scikit-learn
 
 X = np.array([[1,2],[1,4],[1,0],[10,2],[10,4],[10,0]])
 labels = DBSCAN(eps=3, min_samples=2).fit_predict(X)
-labels
 `.trim(),
 
   "gaussian-mixture": `
@@ -1101,7 +1057,6 @@ from statsmodels.tsa.stattools import adfuller # pip install statsmodels
 
 y = pd.Series([112,118,132,129,121,135,148,148,136,119,104,118])
 adf_stat, p, used_lag, nobs, crit, icbest = adfuller(y.dropna())
-adf_stat, p, crit
 `.trim(),
 
   "granger-causality": `
@@ -1126,7 +1081,6 @@ from statsmodels.stats.diagnostic import acorr_ljungbox # pip install statsmodel
 
 y = pd.Series([112,118,132,129,121,135,148,148,136,119,104,118])
 lb = acorr_ljungbox(y, lags=[1,2,3], return_df=True)
-lb
 `.trim(),
 
   "var": `
@@ -1257,7 +1211,6 @@ b = np.array([8,9,7,10,9])
 
 sp = np.sqrt(((a.size-1)*a.var(ddof=1) + (b.size-1)*b.var(ddof=1)) / (a.size + b.size - 2))
 d = (a.mean() - b.mean()) / sp
-d
 `.trim(),
 
   "hedges-g": `
@@ -1271,7 +1224,6 @@ sp = np.sqrt(((n1-1)*a.var(ddof=1) + (n2-1)*b.var(ddof=1)) / (n1 + n2 - 2))
 d = (a.mean() - b.mean()) / sp
 J = 1 - (3 / (4*(n1+n2) - 9))
 g = J * d
-g
 `.trim(),
 
   "eta-squared": `
@@ -1293,7 +1245,6 @@ ss_total  = ss_effect + ss_error
 
 eta_sq = ss_effect / ss_total
 partial_eta_sq = ss_effect / (ss_effect + ss_error)
-eta_sq, partial_eta_sq
 `.trim(),
 
   "odds-ratio": `
@@ -1303,7 +1254,6 @@ table = np.array([[12, 5],
                   [ 3,10]])
 a,b,c,d = table[0,0], table[0,1], table[1,0], table[1,1]
 or_ = (a*d) / (b*c)
-or_
 `.trim(),
 
   "cramers-v": `
@@ -1316,7 +1266,6 @@ chi2, p, dof, expected = stats.chi2_contingency(table, correction=False)
 n = table.sum()
 r, c = table.shape
 V = np.sqrt(chi2 / (n * (min(r-1, c-1))))
-V
 `.trim(),
 
   "omega-squared": `
@@ -1340,7 +1289,6 @@ ms_error = ss_error / df_error
 ss_total = ss_effect + ss_error
 
 omega_sq = (ss_effect - df_effect * ms_error) / (ss_total + ms_error)
-omega_sq
 `.trim(),
 
   "epsilon-squared": `
@@ -1355,7 +1303,6 @@ H, p = stats.kruskal(g1, g2, g3)
 n = len(g1) + len(g2) + len(g3)
 k = 3
 eps_sq = (H - k + 1) / (n - k)
-eps_sq
 `.trim(),
 
   "rank-biserial": `
@@ -1385,7 +1332,6 @@ table = np.array([[12, 5],
                   [ 3,10]])
 a,b,c,d = table[0,0], table[0,1], table[1,0], table[1,1]
 phi = (a*d - b*c) / np.sqrt((a+b)*(c+d)*(a+c)*(b+d))
-phi
 `.trim(),
 
   "risk-ratio": `
@@ -1401,7 +1347,6 @@ risk_exp = event_exp / (event_exp + none_exp)
 risk_unexp = event_unexp / (event_unexp + none_unexp)
 
 RR = risk_exp / risk_unexp
-RR
 `.trim(),
 
   "risk-difference": `
@@ -1417,7 +1362,6 @@ risk_exp = event_exp / (event_exp + none_exp)
 risk_unexp = event_unexp / (event_unexp + none_unexp)
 
 RD = risk_exp - risk_unexp
-RD
 `.trim(),
 
   "cohens-kappa": `
@@ -1430,7 +1374,6 @@ n = cm.sum()
 po = np.trace(cm) / n
 pe = (cm.sum(axis=1) @ cm.sum(axis=0)) / (n**2)
 kappa = (po - pe) / (1 - pe)
-kappa
 `.trim(),
 
   "fleiss-kappa": `
@@ -1454,7 +1397,6 @@ P_i = (np.sum(ratings**2, axis=1) - n) / (n*(n-1))
 P_bar = P_i.mean()
 P_e = np.sum(p_j**2)
 kappa = (P_bar - P_e) / (1 - P_e)
-kappa
 `.trim(),
 
   "intraclass-correlation": `

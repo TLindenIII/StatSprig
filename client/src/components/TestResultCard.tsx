@@ -162,7 +162,7 @@ export const TestResultCard = React.memo(function TestResultCard({
               <AccordionTrigger className="text-sm font-medium">
                 <span className="flex items-center gap-2">
                   <ArrowRight className="w-4 h-4" />
-                  Alternative Tests
+                  Related Methods
                 </span>
               </AccordionTrigger>
               <AccordionContent>
@@ -205,7 +205,9 @@ export const TestResultCard = React.memo(function TestResultCard({
                       );
                     })
                   ) : (
-                    <span className="text-sm text-muted-foreground">No alternatives listed.</span>
+                    <span className="text-sm text-muted-foreground">
+                      No related methods listed.
+                    </span>
                   )}
                 </div>
               </AccordionContent>

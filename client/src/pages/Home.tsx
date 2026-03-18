@@ -23,7 +23,7 @@ export default function Home() {
       icon: GraduationCap,
       title: "Beginner to Expert",
       description:
-        "Use the wizard to reach a recommendation with reasoning—or jump into the full tree.",
+        "Use the wizard to reach a reasonable starting-point recommendation or jump into the full tree.",
     },
     {
       icon: SquareStack,
@@ -76,8 +76,8 @@ export default function Home() {
               with confidence
             </h1>
             <p className="text-xl sm:text-2xl text-foreground/80 max-w-2xl mx-auto font-medium">
-              Pick the right test, check assumptions, and understand <i>why</i> it's the right
-              choice.
+              Find a reasonable starting point, check assumptions, and see <i>why</i> a common
+              default is often used.
             </p>
             <div className="flex flex-col sm:flex-row justify-center gap-4 pt-8">
               <Button

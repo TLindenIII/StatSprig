@@ -63,7 +63,7 @@ export function CompareSheet({
             ) : context === "wizard" ? (
               <>
                 <GitCompare className="w-5 h-5 text-primary" />
-                Compare Alternatives
+                Compare Related Methods
               </>
             ) : isSingleTest ? (
               <>
@@ -94,7 +94,7 @@ export function CompareSheet({
                 )}
                 {context === "wizard" && index === 1 && (
                   <Badge variant="secondary" className="absolute -top-3 left-3 text-xs w-fit">
-                    Alternative
+                    Related
                   </Badge>
                 )}
                 <CardHeader className="pb-3 pt-6">

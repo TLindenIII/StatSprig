@@ -295,7 +295,7 @@ export const statisticalTests: StatTest[] = [
     wikipediaUrl: "https://en.wikipedia.org/wiki/Kruskal%E2%80%93Wallis_test",
     name: "Kruskal-Wallis H Test",
     description:
-      "Non-parametric alternative to one-way ANOVA for comparing three or more independent groups.",
+      "Non-parametric counterpart to one-way ANOVA for comparing three or more independent groups.",
     assumptions: [
       "Independent samples",
       "Ordinal or continuous outcome",
@@ -319,7 +319,7 @@ export const statisticalTests: StatTest[] = [
     wikipediaUrl: "https://en.wikipedia.org/wiki/Friedman_test",
     name: "Friedman Test",
     description:
-      "Non-parametric alternative to repeated measures ANOVA for ordinal or non-normal data.",
+      "Non-parametric counterpart to repeated measures ANOVA for ordinal or non-normal data.",
     assumptions: [
       "Related samples",
       "Ordinal or continuous outcome",
@@ -650,7 +650,7 @@ export const statisticalTests: StatTest[] = [
     whenToUse: [
       "Repeated measures / clustered outcomes when interest is population-averaged effects",
       "Binary/count/continuous outcomes with correlated responses",
-      "Alternative to GLMM when random effects are not the focus",
+      "Population-averaged counterpart to GLMM when random effects are not the focus",
     ],
     category: "Mixed Models",
     outcome: "any",
@@ -1339,7 +1339,7 @@ export const statisticalTests: StatTest[] = [
     id: "welch-anova",
     wikipediaUrl: "https://en.wikipedia.org/wiki/Welch%27s_ANOVA",
     name: "Welch's ANOVA",
-    description: "Robust alternative to one-way ANOVA when variances are unequal across groups.",
+    description: "Robust counterpart to one-way ANOVA when variances are unequal across groups.",
     assumptions: ["Normal distribution", "Independent samples", "Unequal variances allowed"],
     whenToUse: ["Heterogeneous variances", "Unbalanced designs", "Three or more groups"],
     category: "Group Comparison",
@@ -1444,7 +1444,11 @@ export const statisticalTests: StatTest[] = [
     name: "Negative Binomial Regression",
     description: "Models count data with overdispersion (variance greater than mean).",
     assumptions: ["Count outcome", "Overdispersion present", "Log-linear relationship"],
-    whenToUse: ["Overdispersed counts", "Zero-inflated alternatives", "Event count modeling"],
+    whenToUse: [
+      "Overdispersed counts",
+      "When zero-inflated models are also under consideration",
+      "Event count modeling",
+    ],
     category: "Regression",
     outcome: "count",
     predictorStructure: "multiple mixed",
@@ -1805,7 +1809,7 @@ export const statisticalTests: StatTest[] = [
     id: "bayesian-t-test",
     wikipediaUrl: "https://en.wikipedia.org/wiki/Bayes_factor",
     name: "Bayesian t-Test",
-    description: "Bayesian alternative to t-test providing posterior probability of hypotheses.",
+    description: "Bayesian counterpart to the t-test providing posterior probability of hypotheses.",
     assumptions: ["Prior specification", "Normal distribution"],
     whenToUse: [
       "Quantifying evidence for null",
@@ -1999,7 +2003,7 @@ export const statisticalTests: StatTest[] = [
     ],
     whenToUse: [
       "Report effect size for one-way or factorial ANOVA",
-      "Prefer a less biased alternative to eta squared (η²)",
+      "Prefer a less biased effect size than eta squared (η²)",
     ],
     category: "Effect Size",
     outcome: "continuous",

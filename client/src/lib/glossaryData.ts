@@ -526,7 +526,7 @@ export const glossaryTerms: GlossaryTerm[] = [
   {
     term: "Parameter",
     definition:
-      "A measurable characteristic of a population, such as a mean or standard deviation.",
+      "A numerical value that describes a characteristic of an entire population. Parameters summarize the whole group, are usually unknown, and are often estimated using sample statistics. Common examples include the population mean, population standard deviation, and population proportion.",
     category: "Foundations",
     aliases: ["Parameters"],
     relatedTerms: ["Mean", "Variance", "Proportion"],

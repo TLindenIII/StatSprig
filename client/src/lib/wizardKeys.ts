@@ -121,7 +121,7 @@ export const wizardLogic = {
         },
         {
           value: "model_with_predictors",
-          label: "Model outcome with predictors",
+          label: "Supervised Learning",
           description:
             "You want to predict or explain an outcome using one or more inputs (predictors). This includes regression and classification models.",
           set_tags: { goal: "model_with_predictors" },

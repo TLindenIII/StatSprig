@@ -280,15 +280,15 @@ export default function Results() {
                   </section>
                 )}
 
-                {/* ── Alternatives ───────────────────────────────── */}
+                {/* ── Related methods ────────────────────────────── */}
                 {alternativeTests.length > 0 && (
                   <section className="space-y-6">
                     <div className="flex items-center gap-3">
                       <div className="h-8 w-1 bg-green-500 rounded-full" />
                       <div>
-                        <h2 className="text-xl font-semibold">Worth Considering</h2>
+                        <h2 className="text-xl font-semibold">Related Methods</h2>
                         <p className="text-sm text-muted-foreground">
-                          Good alternatives if assumptions aren't met
+                          Methods often considered alongside the starting recommendation
                         </p>
                       </div>
                     </div>

@@ -261,7 +261,6 @@ summary(fit)
   "arima": `
 x <- ts(cumsum(rnorm(120)), frequency = 12, start = c(2015, 1))
 fit <- arima(x, order = c(1,1,1))
-fit
 `.trim(),
 
   "exponential-smoothing": `
@@ -332,7 +331,6 @@ summary(fit)
   "factor-analysis": `
 X <- matrix(rnorm(500), ncol = 5)
 fit <- factanal(X, factors = 2, rotation = "varimax")
-fit
 `.trim(),
 
   "random-forest": `
@@ -347,7 +345,6 @@ df <- data.frame(
   x3 = rnorm(200)
 )
 fit <- randomForest(y ~ ., data = df, ntree = 200)
-fit
 `.trim(),
 
   "gradient-boosting": `
@@ -421,7 +418,6 @@ df <- data.frame(
 
 ctrl <- trainControl(method = "cv", number = 5)
 fit <- train(y ~ x1 + x2, data = df, method = "lm", trControl = ctrl)
-fit
 `.trim(),
 
   "jackknife": `
@@ -472,7 +468,6 @@ g1 <- rnorm(20, sd = 1)
 g2 <- rnorm(20, sd = 2)
 g3 <- rnorm(20, sd = 1.5)
 fmax <- max(var(g1), var(g2), var(g3)) / min(var(g1), var(g2), var(g3))
-fmax
 `.trim(),
 
   "shapiro-wilk": `
@@ -588,7 +583,6 @@ MSerror <- an["Residuals", "Mean Sq"]
 Fc <- qf(0.95, an["group","Df"], DFerror)  # 95% critical F
 
 res <- scheffe.test(y = df$y, trt = df$group, DFerror = DFerror, MSerror = MSerror, Fc = Fc)
-print(res)
 `.trim(),
 
   "dunn-test": `
@@ -746,7 +740,6 @@ df <- data.frame(
   x2 = rnorm(200)
 )
 fit <- svm(y ~ ., data = df, kernel = "radial")
-fit
 `.trim(),
 
   "xgboost": `
@@ -849,7 +842,6 @@ df <- data.frame(
   x2 = rnorm(200)
 )
 fit <- naiveBayes(y ~ ., data = df)
-fit
 `.trim(),
 
   "decision-tree": `
@@ -899,7 +891,6 @@ df <- data.frame(
   x2 = rnorm(300)
 )
 fit <- nnet(y ~ x1 + x2, data = df, size = 5, maxit = 200, trace = FALSE)
-fit
 `.trim(),
 
   "dbscan": `
@@ -1053,7 +1044,6 @@ df <- data.frame(
   group = factor(rep(c("A","B"), each = 6))
 )
 fit <- cuminc(ftime = df$time, fstatus = df$status, group = df$group)
-fit
 `.trim(),
 
   "random-survival-forest": `
@@ -1069,7 +1059,6 @@ df <- data.frame(
 )
 
 fit <- rfsrc(Surv(time, status) ~ x1 + x2, data = df, ntree = 300)
-fit
 `.trim(),
 
   "cohens-d": `
@@ -1108,7 +1097,6 @@ eta_squared(fit, partial = TRUE)
 tab <- matrix(c(30, 20,
                 10, 40), nrow = 2, byrow = TRUE)
 or <- (tab[1,1] * tab[2,2]) / (tab[1,2] * tab[2,1])
-or
 `.trim(),
 
   "cramers-v": `
@@ -1168,13 +1156,11 @@ phi
   "risk-ratio": `
 a <- 30; b <- 20; c <- 10; d <- 40  # 2x2: [a b; c d]
 rr <- (a / (a + b)) / (c / (c + d))
-rr
 `.trim(),
 
   "risk-difference": `
 a <- 30; b <- 20; c <- 10; d <- 40
 rd <- (a / (a + b)) - (c / (c + d))
-rd
 `.trim(),
 
   "cohens-kappa": `

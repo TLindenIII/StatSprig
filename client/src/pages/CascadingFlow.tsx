@@ -304,7 +304,7 @@ export default function CascadingFlow() {
                     <div className="space-y-4">
                       <h3 className="text-sm font-semibold uppercase tracking-wider text-muted-foreground flex items-center gap-2">
                         <div className="w-2 h-2 rounded-full bg-green-500" />
-                        Alternatives
+                        Related Methods
                       </h3>
                       <div className="grid gap-3">
                         {recs.alternatives.map((altId: string) => {
