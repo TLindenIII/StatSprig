@@ -259,17 +259,59 @@ summary(fit)
 `.trim(),
 
   "arima": `
-x <- ts(cumsum(rnorm(120)), frequency = 12, start = c(2015, 1))
-fit <- arima(x, order = c(1,1,1))
+if (!requireNamespace("forecast", quietly = TRUE)) install.packages("forecast")
+if (!requireNamespace("tseries", quietly = TRUE)) install.packages("tseries")
+library(forecast)
+library(tseries)
+
+x <- ts(
+  c(112,118,132,129,121,135,148,148,136,119,104,118,
+    115,126,141,135,125,149,170,170,158,133,114,140,
+    145,150,178,163,172,178,199,199,184,162,146,166),
+  frequency = 12,
+  start = c(2021, 1)
+)
+
+# If both trend and seasonality are present, seasonal-difference first, then regular-difference if needed.
+x_work <- diff(x, lag = 12)
+x_work <- diff(x_work, differences = 1)
+
+adf.test(na.omit(x_work))
+kpss.test(na.omit(x_work))
+
+Acf(na.omit(x_work), lag.max = 8)
+Pacf(na.omit(x_work), lag.max = 8)
+
+# Compare against ets(x) and snaive(x) rather than assuming ARIMA is the default winner.
+fit <- Arima(x, order = c(1, 1, 1), seasonal = list(order = c(0, 1, 1), period = 12))
+forecast(fit, h = 12)
 `.trim(),
 
   "exponential-smoothing": `
 if (!requireNamespace("forecast", quietly = TRUE)) install.packages("forecast")
 library(forecast)
 
-x <- ts(10 + cumsum(rnorm(60)), frequency = 12, start = c(2020, 1))
+x <- ts(
+  c(112,118,132,129,121,135,148,148,136,119,104,118,
+    115,126,141,135,125,149,170,170,158,133,114,140),
+  frequency = 12,
+  start = c(2022, 1)
+)
 fit <- ets(x)
 forecast(fit, h = 12)
+`.trim(),
+
+  "seasonal-naive": `
+if (!requireNamespace("forecast", quietly = TRUE)) install.packages("forecast")
+library(forecast)
+
+x <- ts(
+  c(112,118,132,129,121,135,148,148,136,119,104,118,
+    115,126,141,135,125,149,170,170,158,133,114,140),
+  frequency = 12,
+  start = c(2022, 1)
+)
+snaive(x, h = 12)
 `.trim(),
 
   "kaplan-meier": `
@@ -952,9 +994,28 @@ tail(forecast[, c("ds","yhat","yhat_lower","yhat_upper")])
 if (!requireNamespace("tseries", quietly = TRUE)) install.packages("tseries")
 library(tseries)
 
+x <- ts(c(112,118,132,129,121,135,148,148,136,119,104,118,115,126,141,135))
+x_work <- diff(x, differences = 1)
+adf.test(na.omit(x_work))
+`.trim(),
 
-x <- ts(cumsum(rnorm(200)))
-adf.test(x)
+  "kpss-test": `
+if (!requireNamespace("tseries", quietly = TRUE)) install.packages("tseries")
+library(tseries)
+
+x <- ts(c(112,118,132,129,121,135,148,148,136,119,104,118,115,126,141,135))
+x_work <- diff(x, differences = 1)
+kpss.test(na.omit(x_work))
+`.trim(),
+
+  "acf-pacf": `
+if (!requireNamespace("forecast", quietly = TRUE)) install.packages("forecast")
+library(forecast)
+
+x <- ts(c(112,118,132,129,121,135,148,148,136,119,104,118,115,126,141,135))
+x_work <- diff(x, differences = 1)
+Acf(na.omit(x_work), lag.max = 6)
+Pacf(na.omit(x_work), lag.max = 6)
 `.trim(),
 
   "granger-causality": `
@@ -971,8 +1032,31 @@ grangertest(y ~ x, order = 2, data = df)
 `.trim(),
 
   "ljung-box": `
-x <- ts(rnorm(200))
-Box.test(x, lag = 12, type = "Ljung-Box")
+if (!requireNamespace("forecast", quietly = TRUE)) install.packages("forecast")
+library(forecast)
+
+x <- ts(
+  c(112,118,132,129,121,135,148,148,136,119,104,118,
+    115,126,141,135,125,149,170,170,158,133,114,140),
+  frequency = 12,
+  start = c(2022, 1)
+)
+fit <- ets(x)
+Box.test(residuals(fit), lag = 12, type = "Ljung-Box")
+`.trim(),
+
+  "forecast-residual-diagnostics": `
+if (!requireNamespace("forecast", quietly = TRUE)) install.packages("forecast")
+library(forecast)
+
+x <- ts(
+  c(112,118,132,129,121,135,148,148,136,119,104,118,
+    115,126,141,135,125,149,170,170,158,133,114,140),
+  frequency = 12,
+  start = c(2022, 1)
+)
+fit <- ets(x)
+checkresiduals(fit)
 `.trim(),
 
   "var": `

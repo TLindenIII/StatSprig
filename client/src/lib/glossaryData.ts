@@ -255,7 +255,24 @@ export const glossaryTerms: GlossaryTerm[] = [
     definition:
       "A time series property where key characteristics (like mean and variance) are stable over time; many classical time-series models rely on it.",
     category: "Time Series",
-    relatedTerms: ["Autocorrelation"],
+    relatedTerms: ["Autocorrelation", "Seasonality", "Lag"],
+    aliases: ["Stationary", "Stationary Series"],
+  },
+  {
+    term: "Seasonality",
+    definition:
+      "A repeating pattern in a time series that occurs at a regular interval, such as weekly, monthly, or yearly cycles.",
+    category: "Time Series",
+    relatedTerms: ["Forecasting", "Seasonal Differencing", "Stationarity"],
+    aliases: ["Seasonal Pattern", "Seasonal Patterns"],
+  },
+  {
+    term: "Lag",
+    definition:
+      "A previous time point used as a reference in time-series analysis, such as the value one period ago or twelve periods ago.",
+    category: "Time Series",
+    relatedTerms: ["Autocorrelation", "Autocorrelation Function", "Partial Autocorrelation Function"],
+    aliases: ["Lags", "Lagged Value", "Lagged Values"],
   },
   {
     term: "Autocorrelation",
@@ -263,6 +280,52 @@ export const glossaryTerms: GlossaryTerm[] = [
       "Correlation of a time series with its own past values; important for diagnosing and modeling time-dependent structure.",
     category: "Time Series",
     relatedTerms: ["Stationarity"],
+  },
+  {
+    term: "Differencing",
+    definition:
+      "Transforming a series by subtracting a previous value to reduce trend or other nonstationary structure before modeling.",
+    category: "Time Series",
+    relatedTerms: ["Stationarity", "Seasonal Differencing", "Residuals"],
+    aliases: ["Difference"],
+  },
+  {
+    term: "Seasonal Differencing",
+    definition:
+      "Subtracting each observation from the value one full season earlier (for example, 12 months ago) to reduce seasonal nonstationarity.",
+    category: "Time Series",
+    relatedTerms: ["Differencing", "Stationarity", "Forecasting"],
+  },
+  {
+    term: "White Noise",
+    definition:
+      "A series with no systematic pattern left in the mean; well-behaved forecast model residuals are often expected to look roughly like white noise.",
+    category: "Time Series",
+    relatedTerms: ["Autocorrelation", "Residuals", "Diagnostics"],
+  },
+  {
+    term: "Autocorrelation Function",
+    definition:
+      "A summary of correlations between a series and its lagged values across multiple lags; often abbreviated ACF.",
+    category: "Time Series",
+    relatedTerms: ["Autocorrelation", "Partial Autocorrelation Function", "Stationarity"],
+    aliases: ["ACF"],
+  },
+  {
+    term: "Partial Autocorrelation Function",
+    definition:
+      "Correlation between a series and a lag after adjusting for shorter lags; often abbreviated PACF and used heuristically in ARIMA order selection.",
+    category: "Time Series",
+    relatedTerms: ["Autocorrelation Function", "Autocorrelation", "Forecasting"],
+    aliases: ["PACF"],
+  },
+  {
+    term: "Forecast Interval",
+    definition:
+      "A range of plausible future values from a forecasting model; its calibration depends on the model and on how well the residual assumptions hold.",
+    category: "Time Series",
+    relatedTerms: ["Forecasting", "Residuals", "Variance"],
+    aliases: ["Forecast Intervals"],
   },
 
   // --- Dimension reduction + clustering (concepts) ---

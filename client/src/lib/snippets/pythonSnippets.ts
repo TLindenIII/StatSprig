@@ -309,21 +309,67 @@ m.summary()
 `.trim(),
 
   "arima": `
-import numpy as np
 import pandas as pd
-from statsmodels.tsa.arima.model import ARIMA # pip install statsmodels
+import matplotlib.pyplot as plt
+from statsmodels.graphics.tsaplots import plot_acf, plot_pacf
+from statsmodels.tsa.arima.model import ARIMA
+from statsmodels.tsa.stattools import adfuller, kpss # pip install statsmodels matplotlib
 
-y = pd.Series([112,118,132,129,121,135,148,148,136,119,104,118])
-m = ARIMA(y, order=(1,1,1)).fit()
-m.summary()
+y = pd.Series(
+    [112,118,132,129,121,135,148,148,136,119,104,118,
+     115,126,141,135,125,149,170,170,158,133,114,140,
+     145,150,178,163,172,178,199,199,184,162,146,166],
+    index=pd.date_range("2021-01-01", periods=36, freq="MS"),
+)
+
+# If both trend and seasonality are present, seasonal-difference first, then regular-difference if needed.
+y_work = y.diff(12).dropna()
+y_work = y_work.diff().dropna()
+
+adfuller(y_work)
+kpss(y_work, regression="c", nlags="auto")
+
+fig, axes = plt.subplots(1, 2, figsize=(10, 4))
+plot_acf(y_work, lags=8, ax=axes[0])
+plot_pacf(y_work, lags=8, ax=axes[1], method="ywm")
+plt.tight_layout()
+
+# Compare against ETS and seasonal-naive benchmarks rather than assuming ARIMA is the default winner.
+fit = ARIMA(y, order=(1, 1, 1), seasonal_order=(0, 1, 1, 12)).fit()
+fit.summary()
 `.trim(),
 
   "exponential-smoothing": `
 import pandas as pd
 from statsmodels.tsa.holtwinters import ExponentialSmoothing # pip install statsmodels
 
-y = pd.Series([112,118,132,129,121,135,148,148,136,119,104,118])
-m = ExponentialSmoothing(y, trend="add", seasonal=None).fit()
+y = pd.Series(
+    [112,118,132,129,121,135,148,148,136,119,104,118,
+     115,126,141,135,125,149,170,170,158,133,114,140],
+    index=pd.date_range("2022-01-01", periods=24, freq="MS"),
+)
+fit = ExponentialSmoothing(y, trend="add", seasonal="add", seasonal_periods=12).fit()
+fit.forecast(12)
+`.trim(),
+
+  "seasonal-naive": `
+import numpy as np
+import pandas as pd
+
+y = pd.Series(
+    [112,118,132,129,121,135,148,148,136,119,104,118,
+     115,126,141,135,125,149,170,170,158,133,114,140],
+    index=pd.date_range("2022-01-01", periods=24, freq="MS"),
+)
+
+h = 12
+seasonal_period = 12
+last_season = y.iloc[-seasonal_period:].to_numpy()
+
+pd.Series(
+    np.resize(last_season, h),
+    index=pd.date_range(y.index[-1] + pd.offsets.MonthBegin(), periods=h, freq="MS"),
+)
 `.trim(),
 
   "kaplan-meier": `
@@ -1055,8 +1101,34 @@ forecast[["ds","yhat","yhat_lower","yhat_upper"]].tail(10)
 import pandas as pd
 from statsmodels.tsa.stattools import adfuller # pip install statsmodels
 
-y = pd.Series([112,118,132,129,121,135,148,148,136,119,104,118])
-adf_stat, p, used_lag, nobs, crit, icbest = adfuller(y.dropna())
+y = pd.Series([112,118,132,129,121,135,148,148,136,119,104,118,115,126,141,135])
+y_work = y.diff().dropna()
+
+adfuller(y_work)
+`.trim(),
+
+  "kpss-test": `
+import pandas as pd
+from statsmodels.tsa.stattools import kpss # pip install statsmodels
+
+y = pd.Series([112,118,132,129,121,135,148,148,136,119,104,118,115,126,141,135])
+y_work = y.diff().dropna()
+
+kpss(y_work, regression="c", nlags="auto")
+`.trim(),
+
+  "acf-pacf": `
+import pandas as pd
+import matplotlib.pyplot as plt
+from statsmodels.graphics.tsaplots import plot_acf, plot_pacf # pip install statsmodels matplotlib
+
+y = pd.Series([112,118,132,129,121,135,148,148,136,119,104,118,115,126,141,135])
+y_work = y.diff().dropna()
+
+fig, axes = plt.subplots(1, 2, figsize=(10, 4))
+plot_acf(y_work, lags=6, ax=axes[0])
+plot_pacf(y_work, lags=6, ax=axes[1], method="ywm")
+plt.tight_layout()
 `.trim(),
 
   "granger-causality": `
@@ -1077,10 +1149,41 @@ res = grangercausalitytests(data[["y","x"]], maxlag=2)
 
   "ljung-box": `
 import pandas as pd
-from statsmodels.stats.diagnostic import acorr_ljungbox # pip install statsmodels
+from statsmodels.stats.diagnostic import acorr_ljungbox
+from statsmodels.tsa.holtwinters import ExponentialSmoothing # pip install statsmodels
 
-y = pd.Series([112,118,132,129,121,135,148,148,136,119,104,118])
-lb = acorr_ljungbox(y, lags=[1,2,3], return_df=True)
+y = pd.Series(
+    [112,118,132,129,121,135,148,148,136,119,104,118,
+     115,126,141,135,125,149,170,170,158,133,114,140],
+    index=pd.date_range("2022-01-01", periods=24, freq="MS"),
+)
+fit = ExponentialSmoothing(y, trend="add", seasonal="add", seasonal_periods=12).fit()
+
+acorr_ljungbox((y - fit.fittedvalues).dropna(), lags=[12], return_df=True)
+`.trim(),
+
+  "forecast-residual-diagnostics": `
+import matplotlib.pyplot as plt
+import pandas as pd
+from scipy import stats
+from statsmodels.graphics.tsaplots import plot_acf
+from statsmodels.tsa.holtwinters import ExponentialSmoothing # pip install statsmodels scipy matplotlib
+
+y = pd.Series(
+    [112,118,132,129,121,135,148,148,136,119,104,118,
+     115,126,141,135,125,149,170,170,158,133,114,140],
+    index=pd.date_range("2022-01-01", periods=24, freq="MS"),
+)
+fit = ExponentialSmoothing(y, trend="add", seasonal="add", seasonal_periods=12).fit()
+resid = (y - fit.fittedvalues).dropna()
+
+fig, axes = plt.subplots(1, 3, figsize=(12, 3))
+axes[0].plot(resid)
+axes[0].axhline(0, color="black", linewidth=1)
+axes[0].set_title("Residuals")
+plot_acf(resid, lags=12, ax=axes[1])
+stats.probplot(resid, dist="norm", plot=axes[2])
+plt.tight_layout()
 `.trim(),
 
   "var": `

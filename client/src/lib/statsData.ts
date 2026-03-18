@@ -665,18 +665,23 @@ export const statisticalTests: StatTest[] = [
     id: "arima",
     wikipediaUrl: "https://en.wikipedia.org/wiki/Autoregressive_integrated_moving_average",
     name: "ARIMA Model",
-    description: "Autoregressive integrated moving average model for time series forecasting.",
+    description:
+      "Models autocorrelation in a series after regular and/or seasonal differencing, and is usually best treated as one candidate alongside ETS and seasonal-naive benchmarks.",
     assumptions: [
-      "Stationarity (after differencing)",
-      "No seasonality (or use SARIMA)",
-      "Constant variance",
+      "After any regular and seasonal differencing, the working series is approximately stationary in mean",
+      "Seasonality is modeled explicitly (for example with SARIMA) rather than ignored",
+      "Residuals should have roughly stable variance and little remaining autocorrelation; residual normality matters mainly for forecast intervals",
     ],
-    whenToUse: ["Time series forecasting", "Trend modeling", "Autocorrelated data"],
+    whenToUse: [
+      "You want to model lag structure after handling trend and seasonality",
+      "ADF/KPSS checks and ACF/PACF plots support a stationary transformed series",
+      "You plan to compare ARIMA against ETS and seasonal-naive benchmarks instead of assuming it is the default winner",
+    ],
     category: "Time Series",
     outcome: "continuous",
     predictorStructure: "none",
     design: "time-series",
-    alternativeLinks: ["exponential-smoothing", "prophet", "var"],
+    alternativeLinks: ["exponential-smoothing", "seasonal-naive", "prophet", "acf-pacf"],
     pythonCode: pythonSnippets["arima"],
     rCode: rSnippets["arima"],
   },
@@ -685,16 +690,47 @@ export const statisticalTests: StatTest[] = [
     wikipediaUrl: "https://en.wikipedia.org/wiki/Exponential_smoothing",
     name: "Exponential Smoothing",
     description:
-      "Weighted moving average methods for time series forecasting with trend and seasonality.",
-    assumptions: ["Regular time intervals", "Stationary error variance"],
-    whenToUse: ["Short-term forecasting", "Trend and seasonality", "Simpler interpretation"],
+      "ETS/state-space forecasting family that is often a forgiving first choice for level, trend, and seasonal structure without requiring pre-differencing.",
+    assumptions: [
+      "Regular time intervals",
+      "Seasonal period is known if you use a seasonal ETS model",
+      "Forecast pattern is driven mainly by level, trend, and seasonality rather than rich lag-specific dynamics",
+    ],
+    whenToUse: [
+      "You want a common default starting point for univariate forecasting",
+      "The series has level, trend, and/or seasonality with a gentler learning curve than ARIMA",
+      "You want something to compare against seasonal-naive and ARIMA rather than jumping straight to ARIMA",
+    ],
     category: "Time Series",
     outcome: "continuous",
     predictorStructure: "none",
     design: "time-series",
-    alternativeLinks: ["arima", "prophet"],
+    alternativeLinks: ["seasonal-naive", "arima", "prophet"],
     pythonCode: pythonSnippets["exponential-smoothing"],
     rCode: rSnippets["exponential-smoothing"],
+  },
+  {
+    id: "seasonal-naive",
+    name: "Seasonal Naive Forecast",
+    description:
+      "Baseline forecast that repeats the most recent seasonal pattern; often a strong benchmark for seasonal series.",
+    assumptions: [
+      "Regular time intervals",
+      "Seasonal period is known",
+      "Used primarily as a benchmark rather than assumed to be the final model",
+    ],
+    whenToUse: [
+      "Seasonal data where the last observed season is informative",
+      "Benchmarking ETS, ARIMA, or Prophet forecasts",
+      "You want a simple baseline before tuning richer models",
+    ],
+    category: "Time Series",
+    outcome: "continuous",
+    predictorStructure: "none",
+    design: "time-series",
+    alternativeLinks: ["exponential-smoothing", "arima", "prophet"],
+    pythonCode: pythonSnippets["seasonal-naive"],
+    rCode: rSnippets["seasonal-naive"],
   },
   // Survival Analysis
   {
@@ -1733,12 +1769,16 @@ export const statisticalTests: StatTest[] = [
     description:
       "Automated forecasting procedure by Facebook for time series with seasonality and holidays.",
     assumptions: ["Regular time intervals", "Additive/multiplicative seasonality"],
-    whenToUse: ["Business forecasting", "Multiple seasonality", "Missing data/outliers"],
+    whenToUse: [
+      "Business forecasting with strong calendar effects",
+      "Multiple seasonality, holidays, or missing data/outliers",
+      "You still want to compare against ETS and seasonal-naive benchmarks",
+    ],
     category: "Time Series",
     outcome: "continuous",
     predictorStructure: "none",
     design: "time-series",
-    alternativeLinks: ["arima", "exponential-smoothing", "var"],
+    alternativeLinks: ["exponential-smoothing", "seasonal-naive", "arima"],
     pythonCode: pythonSnippets["prophet"],
     rCode: rSnippets["prophet"],
   },
@@ -1746,16 +1786,73 @@ export const statisticalTests: StatTest[] = [
     id: "adf-test",
     wikipediaUrl: "https://en.wikipedia.org/wiki/Augmented_Dickey%E2%80%93Fuller_test",
     name: "Augmented Dickey-Fuller Test",
-    description: "Tests for unit root to determine if a time series is stationary.",
-    assumptions: ["Time series data", "AR process"],
-    whenToUse: ["Stationarity testing", "Before ARIMA modeling", "Cointegration analysis"],
+    description:
+      "Tests the unit-root null and is commonly paired with KPSS after regular or seasonal differencing when deciding whether a transformed series is stationary enough for ARIMA.",
+    assumptions: [
+      "Time series data",
+      "Lag choice and deterministic terms affect interpretation",
+      "Most useful as one part of a stationarity workflow rather than a standalone decision rule",
+    ],
+    whenToUse: [
+      "After first and/or seasonal differencing",
+      "Pairing with KPSS before ARIMA/SARIMA modeling",
+      "Checking whether a transformed series is closer to stationarity",
+    ],
     category: "Time Series",
     outcome: "continuous",
     predictorStructure: "none",
     design: "time-series",
-    alternativeLinks: ["ljung-box", "arima"],
+    alternativeLinks: ["kpss-test", "acf-pacf", "arima"],
     pythonCode: pythonSnippets["adf-test"],
     rCode: rSnippets["adf-test"],
+  },
+  {
+    id: "kpss-test",
+    wikipediaUrl: "https://en.wikipedia.org/wiki/KPSS_test",
+    name: "KPSS Test",
+    description:
+      "Tests the null hypothesis that a series is level- or trend-stationary; complements ADF because the null hypotheses point in opposite directions.",
+    assumptions: [
+      "Time series data",
+      "Choice of level-stationary versus trend-stationary null",
+      "Interpretation depends on lag selection and deterministic terms",
+    ],
+    whenToUse: [
+      "Pairing with ADF when deciding whether differencing is needed",
+      "You want evidence both for and against Stationarity",
+      "Before ARIMA/SARIMA modeling",
+    ],
+    category: "Time Series",
+    outcome: "continuous",
+    predictorStructure: "none",
+    design: "time-series",
+    alternativeLinks: ["adf-test", "acf-pacf", "arima"],
+    pythonCode: pythonSnippets["kpss-test"],
+    rCode: rSnippets["kpss-test"],
+  },
+  {
+    id: "acf-pacf",
+    wikipediaUrl: "https://en.wikipedia.org/wiki/Partial_autocorrelation_function",
+    name: "ACF/PACF Diagnostics",
+    description:
+      "Plots the Autocorrelation Function and Partial Autocorrelation Function to diagnose serial structure and suggest plausible ARIMA orders.",
+    assumptions: [
+      "Ordered time series or model residuals",
+      "Interpret heuristically rather than mechanically",
+      "Use alongside differencing decisions and residual diagnostics",
+    ],
+    whenToUse: [
+      "Choosing tentative AR and MA orders",
+      "Comparing raw, differenced, and seasonally differenced series",
+      "Checking whether residuals still show serial structure",
+    ],
+    category: "Time Series",
+    outcome: "continuous",
+    predictorStructure: "none",
+    design: "time-series",
+    alternativeLinks: ["adf-test", "kpss-test", "ljung-box", "arima"],
+    pythonCode: pythonSnippets["acf-pacf"],
+    rCode: rSnippets["acf-pacf"],
   },
   {
     id: "granger-causality",
@@ -1776,16 +1873,48 @@ export const statisticalTests: StatTest[] = [
     id: "ljung-box",
     wikipediaUrl: "https://en.wikipedia.org/wiki/Ljung%E2%80%93Box_test",
     name: "Ljung-Box Test",
-    description: "Tests whether any autocorrelations in a series are non-zero.",
-    assumptions: ["Time series residuals", "Specified lag order"],
-    whenToUse: ["Model diagnostics", "White noise testing", "ARIMA residual check"],
+    description:
+      "Tests whether residual autocorrelation remains at the chosen lags; useful for checking whether forecast-model residuals look closer to white noise, but not a complete adequacy checklist by itself.",
+    assumptions: [
+      "Time series residuals or a series with a clearly defined lag question",
+      "Specified lag order",
+      "Interpret alongside residual plots and model-specific diagnostics",
+    ],
+    whenToUse: [
+      "Checking whether forecast-model residuals still contain serial dependence",
+      "White noise testing after ARIMA or ETS fitting",
+      "One part of model adequacy, not the whole checklist",
+    ],
     category: "Time Series",
     outcome: "continuous",
     predictorStructure: "none",
     design: "time-series",
-    alternativeLinks: ["durbin-watson", "adf-test"],
+    alternativeLinks: ["forecast-residual-diagnostics", "acf-pacf", "durbin-watson"],
     pythonCode: pythonSnippets["ljung-box"],
     rCode: rSnippets["ljung-box"],
+  },
+  {
+    id: "forecast-residual-diagnostics",
+    name: "Forecast Residual Diagnostics",
+    description:
+      "Model-specific adequacy checks for forecast models, focusing on leftover autocorrelation, changing residual spread, and whether assumptions behind forecast intervals are plausible.",
+    assumptions: [
+      "You already fitted a forecasting model and saved its residuals",
+      "Adequacy checks depend on the model family and the forecasting goal",
+      "Residual normality matters mainly when interval forecasts rely on Gaussian assumptions",
+    ],
+    whenToUse: [
+      "After fitting ARIMA, ETS, SARIMA, or similar forecast models",
+      "You want residuals that look close to white noise with stable spread",
+      "You need to judge whether forecast intervals are likely to be trustworthy",
+    ],
+    category: "Time Series",
+    outcome: "continuous",
+    predictorStructure: "none",
+    design: "time-series",
+    alternativeLinks: ["ljung-box", "acf-pacf", "shapiro-wilk"],
+    pythonCode: pythonSnippets["forecast-residual-diagnostics"],
+    rCode: rSnippets["forecast-residual-diagnostics"],
   },
   {
     id: "var",
@@ -2178,11 +2307,45 @@ export const statisticalTests: StatTest[] = [
   },
 ];
 
-export const categoryGroups = [
+type CategoryGroup = {
+  id: string;
+  label: string;
+  tests: string[];
+};
+
+const getTestsInCatalogOrder = (testIds: readonly string[]) => {
+  const lookup = new Set(testIds);
+  return statisticalTests.filter((test) => lookup.has(test.id)).map((test) => test.id);
+};
+
+const getTestsForSourceCategory = (
+  sourceCategory: StatTest["category"],
+  options?: {
+    include?: readonly string[];
+    leadWith?: readonly string[];
+  }
+) => {
+  const includedTests = new Set(options?.include ?? []);
+  const baseTests = statisticalTests
+    .filter((test) => test.category === sourceCategory || includedTests.has(test.id))
+    .map((test) => test.id);
+
+  if (!options?.leadWith?.length) {
+    return baseTests;
+  }
+
+  const prioritizedTests = options.leadWith.filter((id) => baseTests.includes(id));
+  const prioritizedSet = new Set(prioritizedTests);
+
+  return [...prioritizedTests, ...baseTests.filter((id) => !prioritizedSet.has(id))];
+};
+
+// These cross-cut the primary browse categories, so they stay curated.
+const curatedCategoryGroups: CategoryGroup[] = [
   {
     id: "parametric",
     label: "Parametric",
-    tests: [
+    tests: getTestsInCatalogOrder([
       "one-sample-t-test",
       "one-proportion-z-test",
       "t-test-independent",
@@ -2190,22 +2353,40 @@ export const categoryGroups = [
       "one-way-anova",
       "two-way-anova",
       "repeated-measures-anova",
-      "welch-t-test",
-      "welch-anova",
-      "ancova",
-      "manova",
       "two-proportion-z-test",
       "pearson-correlation",
       "partial-correlation",
       "point-biserial",
       "linear-regression",
-      "multiple-regression"
-    ],
+      "multiple-regression",
+      "logistic-regression",
+      "poisson-regression",
+      "ordinal-regression",
+      "negative-binomial",
+      "zero-inflated-poisson",
+      "probit-regression",
+      "welch-t-test",
+      "welch-anova",
+      "ancova",
+      "manova",
+      "linear-mixed-model",
+      "glmm",
+      "arima",
+      "exponential-smoothing",
+      "prophet",
+      "var",
+      "accelerated-failure-time",
+      "gaussian-mixture",
+      "bayesian-t-test",
+      "bayesian-regression",
+      "bayesian-anova",
+      "intraclass-correlation",
+    ]),
   },
   {
     id: "nonparametric",
     label: "Non-parametric",
-    tests: [
+    tests: getTestsInCatalogOrder([
       "binomial-test",
       "mann-whitney",
       "wilcoxon-signed-rank",
@@ -2217,65 +2398,35 @@ export const categoryGroups = [
       "fisher-exact",
       "mcnemar-test",
       "cochran-q",
-      "dunn-test"
-    ],
+      "kaplan-meier",
+      "permutation-test",
+      "bootstrap",
+      "jackknife",
+      "kolmogorov-smirnov",
+      "anderson-darling",
+      "fligner-killeen",
+      "dunn-test",
+    ]),
   },
-  {
-    id: "one-sample",
-    label: "One Sample",
-    tests: ["one-sample-t-test", "one-proportion-z-test", "binomial-test"],
-  },
-  {
-    id: "comparison",
-    label: "Group Comparison",
-    tests: [
-      "two-proportion-z-test",
-      "t-test-independent",
-      "paired-t-test",
-      "one-way-anova",
-      "two-way-anova",
-      "repeated-measures-anova",
-      "mann-whitney",
-      "wilcoxon-signed-rank",
-      "kruskal-wallis",
-      "friedman-test",
-      "welch-t-test",
-      "welch-anova",
-      "ancova",
-      "manova",
-    ],
-  },
-  {
-    id: "correlation",
-    label: "Correlation",
-    tests: [
-      "pearson-correlation",
-      "spearman-correlation",
-      "partial-correlation",
-      "kendall-tau",
-      "point-biserial",
-    ],
-  },
-  {
-    id: "regression",
-    label: "Regression",
-    tests: [
-      "linear-regression",
-      "multiple-regression",
-      "logistic-regression",
-      "poisson-regression",
-      "ordinal-regression",
-      "negative-binomial",
-      "zero-inflated-poisson",
-      "quantile-regression",
-      "robust-regression",
-      "probit-regression",
-    ],
-  },
+];
+
+const sourceCategoryGroups: Array<{
+  id: string;
+  label: string;
+  sourceCategory: StatTest["category"];
+  include?: string[];
+  leadWith?: string[];
+}> = [
+  { id: "one-sample", label: "One Sample", sourceCategory: "One Sample" },
+  { id: "comparison", label: "Group Comparison", sourceCategory: "Group Comparison" },
+  { id: "correlation", label: "Correlation", sourceCategory: "Correlation" },
+  { id: "regression", label: "Regression", sourceCategory: "Regression" },
   {
     id: "categorical",
     label: "Categorical",
-    tests: [
+    sourceCategory: "Categorical",
+    include: ["two-proportion-z-test"],
+    leadWith: [
       "chi-square",
       "chi-square-2x2",
       "fisher-exact",
@@ -2285,122 +2436,56 @@ export const categoryGroups = [
       "fisher-freeman-halton",
     ],
   },
-  {
-    id: "mixed",
-    label: "Mixed Models",
-    tests: ["linear-mixed-model", "glmm", "gee"],
-  },
+  { id: "mixed", label: "Mixed Models", sourceCategory: "Mixed Models" },
   {
     id: "time-series",
     label: "Time Series",
-    tests: [
-      "arima",
+    sourceCategory: "Time Series",
+    leadWith: [
       "exponential-smoothing",
+      "seasonal-naive",
+      "arima",
       "prophet",
       "adf-test",
+      "kpss-test",
+      "acf-pacf",
+      "forecast-residual-diagnostics",
       "granger-causality",
       "ljung-box",
       "var",
     ],
   },
-  {
-    id: "survival",
-    label: "Survival Analysis",
-    tests: [
-      "kaplan-meier",
-      "log-rank-test",
-      "cox-regression",
-      "accelerated-failure-time",
-      "competing-risks",
-      "random-survival-forest",
-    ],
-  },
-  {
-    id: "clustering",
-    label: "Clustering",
-    tests: ["kmeans", "hierarchical-clustering", "dbscan", "gaussian-mixture"],
-  },
+  { id: "survival", label: "Survival Analysis", sourceCategory: "Survival Analysis" },
+  { id: "clustering", label: "Clustering", sourceCategory: "Clustering" },
   {
     id: "dimension",
     label: "Dimension Reduction",
-    tests: ["pca", "factor-analysis", "tsne", "umap"],
+    sourceCategory: "Dimension Reduction",
   },
-  {
-    id: "ml",
-    label: "Machine Learning",
-    tests: [
-      "random-forest",
-      "gradient-boosting",
-      "lasso-ridge",
-      "svm",
-      "xgboost",
-      "lightgbm",
-      "catboost",
-      "knn",
-      "naive-bayes",
-      "decision-tree",
-      "elastic-net",
-      "neural-network-mlp",
-    ],
-  },
+  { id: "ml", label: "Machine Learning", sourceCategory: "Machine Learning" },
+  { id: "resampling", label: "Resampling", sourceCategory: "Resampling" },
   {
     id: "assumption",
     label: "Diagnostics & Assumptions",
-    tests: [
-      "levene-test",
-      "bartlett-test",
-      "brown-forsythe",
-      "fligner-killeen",
-      "hartley-fmax",
-      "shapiro-wilk",
-      "kolmogorov-smirnov",
-      "anderson-darling",
-      "dagostino-pearson",
-      "durbin-watson",
-      "breusch-pagan",
-      "vif",
-    ],
+    sourceCategory: "Diagnostics & Assumptions",
   },
-  {
-    id: "posthoc",
-    label: "Post-hoc Tests",
-    tests: ["tukey-hsd", "dunnett-test", "games-howell", "scheffe-test", "dunn-test"],
-  },
+  { id: "posthoc", label: "Post-hoc Tests", sourceCategory: "Post-hoc Tests" },
   {
     id: "padjust",
     label: "P-value Adjustments",
-    tests: ["bonferroni", "holm-bonferroni", "benjamini-hochberg"],
+    sourceCategory: "P-value Adjustments",
   },
-  {
-    id: "bayesian",
-    label: "Bayesian Methods",
-    tests: ["bayesian-t-test", "bayesian-regression", "bayesian-anova"],
-  },
-  {
-    id: "effectsize",
-    label: "Effect Size",
-    tests: [
-      "cohens-d",
-      "hedges-g",
-      "eta-squared",
-      "odds-ratio",
-      "cramers-v",
-      "omega-squared",
-      "epsilon-squared",
-      "rank-biserial",
-      "phi-coefficient",
-      "risk-ratio",
-      "risk-difference",
-    ],
-  },
-  {
-    id: "agreement",
-    label: "Agreement",
-    tests: ["cohens-kappa", "fleiss-kappa", "intraclass-correlation"],
-  },
-  {
-    id: "planning",
-    label: "Study Planning",
-    tests: ["power-analysis"],
-  },
+  { id: "bayesian", label: "Bayesian Methods", sourceCategory: "Bayesian Methods" },
+  { id: "effectsize", label: "Effect Size", sourceCategory: "Effect Size" },
+  { id: "agreement", label: "Agreement", sourceCategory: "Agreement" },
+  { id: "planning", label: "Study Planning", sourceCategory: "Study Planning" },
+];
+
+export const categoryGroups: CategoryGroup[] = [
+  ...curatedCategoryGroups,
+  ...sourceCategoryGroups.map(({ id, label, sourceCategory, include, leadWith }) => ({
+    id,
+    label,
+    tests: getTestsForSourceCategory(sourceCategory, { include, leadWith }),
+  })),
 ];

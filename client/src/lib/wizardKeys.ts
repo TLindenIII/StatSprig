@@ -23,7 +23,7 @@ export type RecommendationRule = {
 };
 
 export const wizardLogic = {
-  version: "1.1.4",
+  version: "1.1.5",
   intent: "recommended_only_wizard",
   tag_schema: {
     goal: [
@@ -77,6 +77,7 @@ export const wizardLogic = {
     ],
     test_against_mu0: ["yes", "no"],
     posthoc: ["none", "all_pairwise", "vs_control"],
+    adequacy_model: ["forecast_model", "regression_model", "autocorrelation_only", "none"],
   },
 
   steps: [
@@ -673,23 +674,26 @@ export const wizardLogic = {
         {
           value: "forecasting",
           label: "Forecasting",
-          description: "Predict future values based on past values (next month’s sales).",
+          description:
+            "Predict future values based on past values. Common starting points are ETS and seasonal-naive benchmarks, not automatically ARIMA.",
           set_tags: { task: "forecasting" },
           next: "leaf",
         },
         {
           value: "stationarity",
           label: "Stationarity check",
-          description: "Check whether the time series has stable statistical properties over time (important for many time-series models).",
+          description:
+            "Check whether differencing is needed, usually by combining ADF/KPSS evidence with plots rather than relying on one test alone.",
           set_tags: { task: "stationarity" },
           next: "leaf",
         },
         {
           value: "model_adequacy",
-          label: "Model adequacy / autocorrelation",
-          description: "Check whether leftover patterns remain after fitting a model (whether residuals are still correlated over time).",
+          label: "Model diagnostics / adequacy",
+          description:
+            "Adequacy checks depend on the model. Residual autocorrelation is one piece, but forecast models may also need variance and interval checks.",
           set_tags: { task: "model_adequacy" },
-          next: "leaf",
+          next: "ts_adequacy_model",
         },
         {
           value: "multivariate",
@@ -704,6 +708,39 @@ export const wizardLogic = {
           description:
             "Test whether past values of one series help predict another series beyond its own past (a practical notion often called Granger causality).",
           set_tags: { task: "causality" },
+          next: "leaf",
+        },
+      ],
+    },
+    {
+      id: "ts_adequacy_model",
+      title: "Model Context",
+      question: "What kind of model are you checking?",
+      description:
+        "Different model families need different diagnostics. Choose the closest match so the recommendations reflect the right checklist.",
+      options: [
+        {
+          value: "forecast_model",
+          label: "Forecast model residuals",
+          description:
+            "ARIMA, ETS, SARIMA, Prophet, or a similar forecasting model where you care about residual behavior and forecast intervals.",
+          set_tags: { adequacy_model: "forecast_model" },
+          next: "leaf",
+        },
+        {
+          value: "regression_model",
+          label: "Regression over time",
+          description:
+            "A regression model with time-ordered residuals, where serial correlation or changing variance may distort inference.",
+          set_tags: { adequacy_model: "regression_model" },
+          next: "leaf",
+        },
+        {
+          value: "autocorrelation_only",
+          label: "Just autocorrelation",
+          description:
+            "You mainly want a targeted check for leftover serial dependence, not a broader adequacy review.",
+          set_tags: { adequacy_model: "autocorrelation_only" },
           next: "leaf",
         },
       ],
@@ -1037,22 +1074,36 @@ export const wizardLogic = {
     {
       id: "ts_forecast",
       when: { goal: "time_series", task: "forecasting" },
-      recommend: ["arima"],
-      alternatives: ["exponential-smoothing", "prophet"],
-      add_ons: ["ljung-box", "adf-test"],
+      recommend: ["exponential-smoothing"],
+      alternatives: ["seasonal-naive", "arima", "prophet"],
+      add_ons: ["adf-test", "kpss-test", "acf-pacf"],
     },
     {
       id: "ts_stationarity",
       when: { goal: "time_series", task: "stationarity" },
       recommend: ["adf-test"],
-      alternatives: [],
+      alternatives: ["kpss-test"],
+      add_ons: ["acf-pacf"],
+    },
+    {
+      id: "ts_adequacy_forecast_model",
+      when: { goal: "time_series", task: "model_adequacy", adequacy_model: "forecast_model" },
+      recommend: ["forecast-residual-diagnostics"],
+      alternatives: ["ljung-box", "acf-pacf"],
+      add_ons: ["shapiro-wilk"],
+    },
+    {
+      id: "ts_adequacy_regression_model",
+      when: { goal: "time_series", task: "model_adequacy", adequacy_model: "regression_model" },
+      recommend: ["durbin-watson"],
+      alternatives: ["ljung-box", "breusch-pagan"],
       add_ons: [],
     },
     {
-      id: "ts_adequacy",
-      when: { goal: "time_series", task: "model_adequacy" },
+      id: "ts_adequacy_autocorrelation_only",
+      when: { goal: "time_series", task: "model_adequacy", adequacy_model: "autocorrelation_only" },
       recommend: ["ljung-box"],
-      alternatives: [],
+      alternatives: ["acf-pacf", "durbin-watson"],
       add_ons: [],
     },
     {
