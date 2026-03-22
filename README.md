@@ -1,4 +1,4 @@
-# StatsTree
+# StatSprig
 
 ![](./readme-images/front-page.png)
 
