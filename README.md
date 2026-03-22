@@ -2,9 +2,9 @@
 
 ![](./readme-images/front-page.png)
 
-**StatsTree** is an interactive, web-based decision tool designed to help researchers, students, and analysts select the most appropriate statistical test based on their research goals, data structure, and study design.
+**StatSprig** is an interactive, web-based decision tool designed to help researchers, students, and analysts select the most appropriate statistical test based on their research goals, data structure, and study design.
 
-🌐 **Live Site:** [tlindeniii.github.io/Stats-Tree](https://tlindeniii.github.io/Stats-Tree/)
+🌐 **Live Site:** [statsprig.com](https://www.statsprig.com)
 
 📦 **Offline package:** [Download](./docs/index.html)
   - Download the HTML file and open it in any browser offline
@@ -65,7 +65,7 @@ Rather than treating statistical tests as interchangeable, StatsTree emphasizes 
 
 ## Coverage
 
-StatsTree currently includes:
+StatSprig currently includes:
 
 ![](./readme-images/coverage.png)
 
@@ -141,7 +141,7 @@ This configuration enables the application to run entirely from a single HTML fi
 
 ## Project Philosophy
 
-StatsTree prioritizes:
+StatSprig prioritizes:
 - Correct statistical reasoning over rote memorization
 - Transparency around assumptions and limitations
 - Breadth of coverage across statistical methodologies
@@ -153,24 +153,24 @@ The project is intended to function both as a **practical decision tool** and an
 
 ## Acknowledgment & Related Work
 
-This project acknowledges **Stat Tree™** (https://www.stat-tree.com) as a respected and well-established resource for statistical test selection.
+This project acknowledges **Stat-Tree™** (https://www.stat-tree.com) as a respected and well-established resource for statistical test selection.
 
-Although Stat Tree™ was discovered late in the development of this project, it is important to recognize its contribution to the field. Stat Tree™ guides users through a structured series of decision points to identify the appropriate statistical test for a given hypothesis or research objective. It also provides linked **training videos and demonstrations** across multiple platforms, including **Julia, Python™, R, SAS®, SPSS™, Stata™, and Excel™**, making it a strong hands-on educational resource.
+Although Stat Tree™ was discovered late in the development of this project, it is important to recognize its contribution to the field. Stat-Tree™ guides users through a structured series of decision points to identify the appropriate statistical test for a given hypothesis or research objective. It also provides linked **training videos and demonstrations** across multiple platforms, including **Julia, Python™, R, SAS®, SPSS™, Stata™, and Excel™**, making it a strong hands-on educational resource.
 
-StatsTree was developed independently and with a different emphasis. In particular, this project focuses on:
+StatSprig was developed independently and with a different emphasis. In particular, this project focuses on:
 - A broader breadth of statistical tests and categories
 - Explicit assumption-driven decision logic
 - A modern, web-native, interactive experience
 - Serving as a general-purpose reference and selection guide rather than a software-specific tutorial platform
 
-Stat Tree™ remains an excellent complementary resource, especially for users seeking platform-specific demonstrations, and its existence reinforces the importance of accessible tools that improve statistical decision-making.
+Stat-Tree™ remains an excellent complementary resource, especially for users seeking platform-specific demonstrations, and its existence reinforces the importance of accessible tools that improve statistical decision-making.
 
 ---
 
 ## Roadmap
 
 Planned and potential future enhancements include:
-- Code examples for R and Python
+✅ Code examples for R and Python
 - Downloadable decision cheatsheets
 - Links to textbooks and primary references
 
