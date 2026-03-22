@@ -14,8 +14,16 @@ export function Header({ currentPage }: HeaderProps) {
         <Link href="/" className="flex items-center gap-2 font-semibold">
           {currentPage !== "home" && (
             <>
-              <img src="/logo-light-theme.svg" alt="StatSprig" className="w-10 h-10 block dark:hidden" />
-              <img src="/logo-dark-theme.svg" alt="StatSprig" className="w-10 h-10 hidden dark:block" />
+              <img
+                src="./logo-light-theme.svg"
+                alt="StatSprig"
+                className="w-10 h-10 block dark:hidden"
+              />
+              <img
+                src="./logo-dark-theme.svg"
+                alt="StatSprig"
+                className="w-10 h-10 hidden dark:block"
+              />
             </>
           )}
           {/* Always hide StatsTree text on mobile for non-home pages to match previous fix. 

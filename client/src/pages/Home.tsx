@@ -61,12 +61,12 @@ export default function Home() {
                 {/* Inner metallic sheen for dark mode */}
                 <div className="hidden dark:block absolute inset-0 rounded-[2rem] bg-gradient-to-tr from-transparent to-white/5 pointer-events-none" />
                 <img
-                  src="/logo-light-theme.svg"
+                  src="./logo-light-theme.svg"
                   alt="StatSprig"
                   className="w-12 h-12 sm:w-16 sm:h-16 relative z-10 block dark:hidden"
                 />
                 <img
-                  src="/logo-dark-theme.svg"
+                  src="./logo-dark-theme.svg"
                   alt="StatSprig"
                   className="w-12 h-12 sm:w-16 sm:h-16 relative z-10 hidden dark:block"
                 />
