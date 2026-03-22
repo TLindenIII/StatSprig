@@ -109,7 +109,7 @@ export function FeedbackModal() {
         <DialogHeader>
           <DialogTitle>Beta Feedback</DialogTitle>
           <DialogDescription>
-            Help us improve The Statlas! Your feedback goes directly to our team.
+            Help us improve StatSprig! Your feedback goes directly to our team.
           </DialogDescription>
         </DialogHeader>
         <form onSubmit={handleSubmit} className="space-y-6 mt-4">
