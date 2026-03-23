@@ -1,181 +1,168 @@
 # StatSprig
 
-![](./readme-images/front-page.png)
+![](readme-images/front-page.png)
 
-**StatSprig** is an interactive, web-based decision tool designed to help researchers, students, and analysts select the most appropriate statistical test based on their research goals, data structure, and study design.
+StatSprig is an interactive statistical test selection and reference app built to help users find a reasonable starting point for an analysis, understand the assumptions behind common methods, and compare nearby alternatives without leaving the browser.
 
-🌐 **Live Site:** [statsprig.com](https://www.statsprig.com)
+Live site: [statsprig.com](https://www.statsprig.com)
 
-📦 **Offline package:** [Download](./docs/index.html)
-  - Download the HTML file and open it in any browser offline
+Download offline version: [docs/index.html](docs/index.html)
 
----
+Current library:
 
-## Overview
+![](readme-images/coverage.png)
 
-Selecting the correct statistical test is a foundational but frequently misunderstood step in research and data analysis. StatsTree simplifies this process by guiding users through a structured, assumption-aware decision tree that accounts for research objectives, variable types, sample structure, and modeling constraints.
+## What It Does
 
-The platform is designed to be intuitive, educational, and completely free to use.
+StatSprig is designed for students, researchers, educators, analysts, and anyone who wants a faster way to move from a research question to a defensible method choice.
 
----
+The current product includes:
 
-## How It Works
+- A guided wizard for test selection based on goal, outcome type, design, and structure
+  ![](readme-images/wizard.png)
 
-![](./readme-images/how-it-works.png)
+</br>
 
-### Goal-Oriented Selection
-Users begin with their research question—such as comparing groups, testing relationships, or analyzing repeated measures—and are guided toward the appropriate class of statistical methods.
+- A horizontally explorable decision tree for browsing the same logic more directly
+  ![](readme-images/flowchart.png)
 
-### Decision Tree Logic
-StatsTree uses a step-by-step decision tree that evaluates:
-- Outcome and predictor variable types
-- Number of groups or samples
-- Independence vs. pairing
-- Distributional and modeling assumptions
+</br>
 
-### Assumption Awareness
-Rather than treating statistical tests as interchangeable, StatsTree emphasizes **assumption checking**, helping users understand:
-- When a test is valid
-- When assumptions are violated
-- Which alternative methods may be more appropriate
+- A searchable test library with filtering by category, outcome scale, and design
+  ![](readme-images/browse-all.png)
 
----
+</br>
 
-## Platform Features
+- Side-by-side comparison views for related methods and companion measures
+  ![](readme-images/see-related.png)
 
-### **Selection Wizard** — guided, question-based test selection
+</br>
 
-![](./readme-images/wizard.png)
+- Detailed test cards with assumptions, use cases, related methods, and code examples
+  ![](readme-images/details.png)
 
-### **Flowchart** — visual representation of statistical decision logic  
+</br>
 
-![](./readme-images/flowchart.png)
+- Inline glossary support across the app, plus a dedicated glossary page
+  ![](readme-images/glossary.png)
 
-### **Browse All Tests** — complete catalog of supported methods  
+</br>
 
-![](./readme-images/browse-all.png)
+## Product Structure
 
-### **Compare** - recommendation alternatives or up to 3 tests of your choice
+Most of StatSprig's decision logic and content live in typed frontend data files rather than a live backend service:
 
-![](./readme-images/compare-alternatives.png)
+- `client/src/lib/wizardKeys.ts` contains the decision flow and recommendation rules
+- `client/src/lib/statsData.ts` contains the statistical test catalog and code snippets
+- `client/src/lib/glossaryData.ts` contains glossary definitions and related terms
 
-![](./readme-images/compare-tests.png)
+This keeps the app fast, portable, and suitable for both web deployment and offline usage.
 
----
+## Running Locally
 
-## Coverage
+Prerequisites:
 
-StatSprig currently includes:
+- Node.js 20+
+- npm
 
-![](./readme-images/coverage.png)
+Install dependencies:
 
-Covered scenarios include:
-- Parametric and non-parametric group comparisons
-- Tests of association and independence
-- Regression and predictive modeling
-- Experimental and observational designs
-- Paired, repeated-measures, and multivariate analyses
+```bash
+npm install
+```
 
----
+Start the development server:
 
-## Use Cases
+```bash
+npm run dev
+```
 
-StatsTree is intended for:
-- Undergraduate and graduate students
-- Academic researchers
-- Data analysts and data scientists
-- Educators and instructors
-- Practitioners seeking a structured statistical decision workflow
+This starts the app on port `5000` by default.
 
----
+Useful commands:
+
+```bash
+npm run check   # TypeScript type-check
+npm run build   # Production build + static offline export
+```
+
+## Build Outputs
+
+`npm run build` produces two deployment targets:
+
+- `dist/` for the bundled server and standard production client assets
+- `docs/index.html` as a fully inlined single-file build for offline use and GitHub Pages-style static hosting
+
+The offline build uses hash-based routing so it can run directly from `file://` without a web server.
 
 ## Tech Stack
 
 ### Frontend
-- React 18 with TypeScript
-- Vite (build tool with hot module replacement)
-- Wouter (lightweight routing)
-- TanStack Query (React Query) for data fetching and caching
-- Tailwind CSS with CSS variables for theming
-- shadcn/ui component library (built on Radix UI)
+
+- React 18 + TypeScript
+- Vite 5
+- Wouter for routing, with a custom hash-router path for offline mode
+- Tailwind CSS for styling and design tokens
+- shadcn/ui components built on Radix UI primitives
 - Lucide React icons
+- Framer Motion for selected UI animation
 
-### Backend
-- Node.js with Express
-- TypeScript using ES modules
-- RESTful API architecture
+### Content and presentation
 
-### Data Layer
-- Drizzle ORM (configured for PostgreSQL)
-- Currently using in-memory storage (`MemStorage`)
+- Typed TypeScript modules for decision rules, glossary data, and test metadata
+- React Markdown for rich text rendering
+- `remark-math` + `rehype-katex` for math support
+- Prism-based code blocks for Python and R snippets
+- CSS custom properties and a custom light/dark theme toggle persisted in `localStorage`
 
-### Styling & Theming
-- Tailwind CSS
-- Dark / light mode via CSS variables
-- Google Fonts:
-  - DM Sans
-  - Inter
-  - Fira Code
+### Server and build pipeline
 
-### Offline Packaging & Distribution
-The application supports a fully offline, single-file deployment suitable for `file://` usage and air-gapped environments.
+- Node.js + Express as the development and production host shell
+- esbuild for bundling the server output
+- `vite-plugin-singlefile` for the standalone offline export
+- A dedicated static Vite config for generating the single-file `docs/` build
 
-- **Vite**  
-  Used as the primary bundler with a dedicated offline build configuration (`vite.static.config.ts`) that:
-  - Uses a separate entry point (`main-offline.tsx`)
-  - Sets a `VITE_OFFLINE_MODE` environment variable
-  - Inlines all assets with a 100 MB limit
-  - Outputs the build to `dist-offline/`
+### Current architecture note
 
-- **vite-plugin-singlefile**  
-  A Vite plugin that inlines all JavaScript, CSS, and static assets into a single HTML file.  
-  No external files or web server are required.
+- The core StatSprig experience is currently client-driven
+- The included server is mainly responsible for local development and production hosting
+- The statistical catalog, glossary, and recommendation logic do not depend on a live database or API
 
-- **Wouter (`useHashLocation`)**  
-  Uses Wouter’s built-in hash-based routing to enable client-side navigation via `#/path` URLs.  
-  This routing strategy is compatible with the `file://` protocol, unlike traditional path-based routing.
+## Project Goals
 
-This configuration enables the application to run entirely from a single HTML file while preserving full client-side routing and application functionality.
+StatSprig aims to make statistical method selection more practical and less opaque by emphasizing:
 
----
+- Reasonable starting-point recommendations instead of false certainty
+- Assumption awareness instead of memorized test names
+- Quick comparison between adjacent methods
+- Free access without accounts or paywalls
+- A usable experience for both beginners and experienced users
 
-## Project Philosophy
+## Acknowledgment
 
-StatSprig prioritizes:
-- Correct statistical reasoning over rote memorization
-- Transparency around assumptions and limitations
-- Breadth of coverage across statistical methodologies
-- Accessibility without paywalls or required accounts
+<div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 24px;">
 
-The project is intended to function both as a **practical decision tool** and an **educational reference**.
+  <div style="flex: 1;">
+    <ul>
+      <li>DOED Minority Science and Engineering Improvement Program (MSEIP) Grant#: P120A220015, "Boosting STEM Student Success"</li>
+      <li>Dr. Bernadette Hence at U.S. Department of Education</li>
+      </br>
+      <li>Dr. Mary Jo Parker, PI, MSEIP at University of Houston-Downtown</li>
+      <li>Dr. Katherine Shoemaker, Co-PI, MSEIP at University of Houston-Downtown</li>
+    </ul>
+  </div>
 
----
+  <div style="display: flex; flex-direction: column; align-items: center; gap: 12px;">
+    <img src="readme-images/doe.png" height="90">
+    <img src="readme-images/sa.png" height="110">
+  </div>
 
-## Acknowledgment & Related Work
+</div>
 
-This project acknowledges **Stat-Tree™** (https://www.stat-tree.com) as a respected and well-established resource for statistical test selection.
+## Related Work
 
-Although Stat Tree™ was discovered late in the development of this project, it is important to recognize its contribution to the field. Stat-Tree™ guides users through a structured series of decision points to identify the appropriate statistical test for a given hypothesis or research objective. It also provides linked **training videos and demonstrations** across multiple platforms, including **Julia, Python™, R, SAS®, SPSS™, Stata™, and Excel™**, making it a strong hands-on educational resource.
-
-StatSprig was developed independently and with a different emphasis. In particular, this project focuses on:
-- A broader breadth of statistical tests and categories
-- Explicit assumption-driven decision logic
-- A modern, web-native, interactive experience
-- Serving as a general-purpose reference and selection guide rather than a software-specific tutorial platform
-
-Stat-Tree™ remains an excellent complementary resource, especially for users seeking platform-specific demonstrations, and its existence reinforces the importance of accessible tools that improve statistical decision-making.
-
----
-
-## Roadmap
-
-Planned and potential future enhancements include:
-✅ Code examples for R and Python
-- Downloadable decision cheatsheets
-- Links to textbooks and primary references
-
----
+StatSprig was developed independently, but projects such as [Stat-Tree](https://www.stat-tree.com) remain valuable adjacent resources for statistical test selection and statistical software walkthroughs. The broader goal is the same: make better statistical decision-making more accessible.
 
 ## License
 
-This project is **free to use** for educational and research purposes.
+This repository is currently marked as `MIT` in `package.json`.

@@ -116,7 +116,7 @@ export const wizardLogic = {
           value: "categorical_association",
           label: "Categorical association / agreement",
           description:
-            "You want to analyze relationships between categories (like a contingency table) or measure agreement between raters/labels (how consistently people or systems classify items).",
+            "You want to analyze relationships between categories (like political party vs religious affiliation measured on the same subjects in a contingency table) or measure agreement between raters/labels (how consistently people or systems classify items).",
           set_tags: { goal: "categorical_association" },
           next: "cat_assoc_task",
         },
@@ -360,12 +360,12 @@ export const wizardLogic = {
       title: "Study Design",
       question: "What is the design?",
       description:
-        "For categorical outcomes, we still need to know whether groups are separate or paired (the same units measured twice).",
+        "For categorical outcomes, we still need to know whether you are comparing one categorical outcome across separate groups or paired measurements on the same units. If you instead measured two categorical variables on the same subjects once each (for example, political party and religious affiliation), use Categorical association / agreement from the first screen.",
       options: [
         {
           value: "independent",
           label: "Independent groups",
-          description: "Different subjects/items in each group (different people in treatment vs control).",
+          description: "Different subjects/items in each group, with one categorical outcome compared across groups (different people in treatment vs control).",
           set_tags: { design: "independent" },
           next: "cat_table_shape",
         },
@@ -462,7 +462,8 @@ export const wizardLogic = {
         {
           value: "independence",
           label: "Test independence (contingency table)",
-          description: "You have a table of counts and want to know whether two categorical variables are related (not independent).",
+          description:
+            "You have a table of counts and want to know whether two categorical variables are related (not independent). This includes two categorical variables measured once on the same subjects.",
           set_tags: { task: "independence_test" },
           next: "leaf",
         },
