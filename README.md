@@ -1,7 +1,12 @@
 # StatSprig
 
 ![](readme-images/front-page.png)
-[![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/TLindenIII/StatSprig)
+
+<p align="center">
+  <a href="https://deepwiki.com/TLindenIII/StatSprig">
+    <img src="https://deepwiki.com/badge.svg" alt="Ask DeepWiki">
+  </a>
+</p>
 
 StatSprig is an interactive statistical test selection and reference app built to help users find a reasonable starting point for an analysis, understand the assumptions behind common methods, and compare nearby alternatives without leaving the browser.
 
